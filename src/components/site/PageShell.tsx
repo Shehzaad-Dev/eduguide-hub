@@ -1,11 +1,13 @@
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import ConsentBanner from "../ui/consent-banner";
+import { PageStepper } from "./PageStepper";
 
 export function PageShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-dvh flex-col bg-background">
       <Navbar />
+      <PageStepper />
       <main className="flex-1">{children}</main>
       <Footer />
       <ConsentBanner />

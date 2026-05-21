@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Search, Award, GraduationCap, Globe2, TrendingUp, Sparkles, BookOpen, Star, CheckCircle2 } from "lucide-react";
+import type { ComponentType, ReactNode } from "react";
 import { PageShell } from "@/components/site/PageShell";
 import AdSlot from "@/components/ui/ad-slot";
 import { SCHOLARSHIPS, UNIVERSITIES, PLATFORMS, CAREERS, TESTIMONIALS } from "@/data/site";
@@ -22,13 +23,6 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const latest = ARTICLES.slice(0, 3);
-  const sitePages = [
-    { id: 1, label: "1", title: "Home", to: "/" },
-    { id: 2, label: "2", title: "Scholarships", to: "/scholarships" },
-    { id: 3, label: "3", title: "Universities", to: "/universities" },
-    { id: 4, label: "4", title: "Online Learning", to: "/online-learning" },
-    { id: 5, label: "5", title: "Career Guidance", to: "/career-guidance" },
-  ];
 
   return (
     <PageShell>
@@ -331,66 +325,6 @@ function Home() {
         </div>
       </section>
 
-      {/* SITE PAGE NAVIGATION */}
-      <section className="py-12 bg-background border-t border-border">
-        <div className="container-px mx-auto max-w-7xl">
-          <div className="rounded-3xl border border-border bg-card p-6 md:p-8 shadow-elegant">
-            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-xs uppercase tracking-[0.28em] text-primary/80 font-semibold">
-                  Quick site navigation
-                </p>
-                <h2 className="mt-3 text-2xl md:text-3xl font-bold text-secondary">
-                  Find key pages fast with page numbers and arrows
-                </h2>
-                <p className="mt-3 text-sm text-muted-foreground max-w-2xl">
-                  Use the numbered links to move through the most important EduGuide pages without scrolling.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-3 justify-start md:justify-end">
-                {sitePages.map((page) => (
-                  <Link
-                    key={page.id}
-                    to={page.to}
-                    className="min-w-[90px] rounded-2xl border border-border bg-white/90 px-4 py-3 text-left text-sm font-semibold text-secondary transition hover:border-primary/60 hover:bg-primary/10"
-                  >
-                    <span className="text-[10px] uppercase tracking-[0.24em] text-primary">Page {page.label}</span>
-                    <span className="block text-sm font-bold text-secondary leading-snug">{page.title}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="rounded-3xl bg-soft p-4 text-sm text-muted-foreground">
-                Page 1 of {sitePages.length} — start here, then move to scholarships, universities, online learning, or career guidance.
-              </div>
-              <div className="flex flex-wrap items-center gap-3">
-                <Link
-                  to="/"
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-white/90 px-4 py-3 text-sm font-semibold text-secondary transition hover:border-primary/60 hover:bg-primary/10"
-                >
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    ←
-                  </span>
-                  Home
-                </Link>
-                <Link
-                  to="/scholarships"
-                  className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-elegant hover:bg-primary-glow transition"
-                >
-                  Next
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-glow text-primary-foreground">
-                    →
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* BOTTOM AD */}
       <section className="py-12 bg-soft border-t border-border">
         <div className="container-px mx-auto max-w-7xl">
@@ -409,7 +343,7 @@ function Home() {
 
 function Section({ eyebrow, title, description, ctaTo, ctaLabel, icon: Icon, soft, children }: {
   eyebrow: string; title: string; description: string; ctaTo: string; ctaLabel: string;
-  icon: React.ComponentType<{ className?: string }>; soft?: boolean; children: React.ReactNode;
+  icon: ComponentType<{ className?: string }>; soft?: boolean; children: ReactNode;
 }) {
   return (
     <section className={`py-20 md:py-24 ${soft ? "bg-soft border-y border-border" : ""}`}>
