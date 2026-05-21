@@ -7,8 +7,8 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-dvh flex-col bg-background">
       <Navbar />
-      <PageStepper />
       <main className="flex-1">{children}</main>
+      <PageStepper />
       <Footer />
       <ConsentBanner />
     </div>

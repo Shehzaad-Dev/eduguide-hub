@@ -102,6 +102,44 @@ function Post() {
           </div>
         </div>
 
+        {/* Article previous / next navigation */}
+        {(() => {
+          const idx = ARTICLES.findIndex((a) => a.slug === article.slug);
+          const prev = ARTICLES[idx - 1];
+          const next = ARTICLES[idx + 1];
+          return (
+            <nav className="mt-12 flex items-center justify-center gap-6">
+              {prev ? (
+                <Link to="/blog/$slug" params={{ slug: prev.slug }}
+                  className="inline-flex items-center gap-3 rounded-2xl border border-border bg-white/90 px-4 py-3 text-sm font-semibold hover:bg-primary/10"
+                >
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-primary/10 text-primary">←</span>
+                  <div className="text-left">
+                    <div className="text-[11px] text-muted-foreground">Previous</div>
+                    <div className="font-semibold text-secondary line-clamp-1">{prev.title}</div>
+                  </div>
+                </Link>
+              ) : (
+                <div className="w-40" />
+              )}
+
+              {next ? (
+                <Link to="/blog/$slug" params={{ slug: next.slug }}
+                  className="inline-flex items-center gap-3 rounded-2xl border border-border bg-white/90 px-4 py-3 text-sm font-semibold hover:bg-primary/10"
+                >
+                  <div className="text-right">
+                    <div className="text-[11px] text-muted-foreground">Next</div>
+                    <div className="font-semibold text-secondary line-clamp-1">{next.title}</div>
+                  </div>
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-primary/10 text-primary">→</span>
+                </Link>
+              ) : (
+                <div className="w-40" />
+              )}
+            </nav>
+          );
+        })()}
+
         {related.length > 0 && (
           <section className="mt-20 pt-12 border-t border-border">
             <h2 className="text-2xl font-bold text-secondary mb-8">Related articles</h2>
