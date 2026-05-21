@@ -14,15 +14,28 @@ function Page() {
     <PageShell>
       <PageHeader eyebrow="Legal" title="Privacy Policy" description="Last updated: May 2026" />
       <section className="container-px mx-auto max-w-3xl py-16 prose-lg space-y-5 leading-relaxed text-foreground">
-        <p>EduGuide respects your privacy. This policy explains what data we collect, how we use it and your rights.</p>
+        <p>EduGuide is committed to protecting your privacy. We collect only the information necessary to provide the services on this site and to improve the experience for students and educators.</p>
+
         <h2 className="text-2xl font-bold text-secondary mt-8">Information we collect</h2>
-        <p>We collect minimal information: email when you subscribe to our newsletter, and anonymized analytics about how visitors use the site.</p>
-        <h2 className="text-2xl font-bold text-secondary mt-8">How we use it</h2>
-        <p>To send weekly scholarship updates (only if you opt in), improve our content and ensure the website runs smoothly.</p>
-        <h2 className="text-2xl font-bold text-secondary mt-8">Third parties</h2>
-        <p>We may display ads from Google AdSense and affiliate links. These third parties may set cookies subject to their own privacy policies.</p>
+        <p>We collect:</p>
+        <ul>
+          <li>Email addresses you provide when subscribing to newsletter updates.</li>
+          <li>Anonymous analytics data (page views, referral, device type) to help us improve content and performance.</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold text-secondary mt-8">Cookies & third parties</h2>
+        <p>We use cookies and may work with third-party services (ad networks, analytics providers, affiliate partners). Those services may set cookies under their own policies — please review their privacy notices for details.</p>
+
+        <h2 className="text-2xl font-bold text-secondary mt-8">How we use your data</h2>
+        <p>We use data to deliver newsletter content you subscribe to, personalize content, detect misuse, and improve the site. We do not sell personal data.</p>
+
+        <h2 className="text-2xl font-bold text-secondary mt-8">Security and retention</h2>
+        <p>We take standard technical measures to protect data. We retain personal data only as long as necessary to provide the service or as required by law.</p>
+
         <h2 className="text-2xl font-bold text-secondary mt-8">Your rights</h2>
-        <p>You can unsubscribe from emails at any time, and request deletion of your data by emailing hello@eduguide.com.</p>
+        <p>You may unsubscribe at any time from our emails and you can request access, correction or deletion of your personal data by emailing <a className="text-primary" href="mailto:hello@eduguide.com">hello@eduguide.com</a>. We will respond promptly.</p>
+
+        <p className="mt-8 font-semibold text-secondary">Built for students. Loved by educators.</p>
       </section>
     </PageShell>
   );

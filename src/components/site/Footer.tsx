@@ -104,7 +104,6 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container-px mx-auto max-w-7xl py-6 flex flex-col sm:flex-row justify-between gap-3 text-xs text-secondary-foreground/60">
           <p>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
-          <p>Built for students. Loved by educators.</p>
         </div>
       </div>
     </footer>
