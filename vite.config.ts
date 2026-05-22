@@ -6,16 +6,43 @@ import { cloudflare } from "@cloudflare/vite-plugin";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import tanstackRouter from "@tanstack/router-plugin/vite";
 
-export default defineConfig(({ command }) => ({
-  plugins: [
-    tanstackStart({
-      server: { entry: "server" },
-    }),
-    tanstackRouter(),
-    react(),
-    tailwindcss(),
-    tsconfigPaths(),
-    // Cloudflare pre-bundles server deps during `vite dev` and breaks TanStack virtual imports
-    ...(command === "serve" ? [] : [cloudflare()]),
-  ],
-}));
+const tanstackOptimizeDepsExclude = [
+  "@tanstack/start-server-core",
+  "@tanstack/start-client-core",
+  "@tanstack/react-start",
+  "@tanstack/react-start/client",
+  "@tanstack/react-start/server",
+];
+
+export default defineConfig(({ command }) => {
+  const isServe = command === "serve";
+
+  return {
+    plugins: [
+      tanstackStart({
+        server: { entry: "server" },
+      }),
+      tanstackRouter({
+        // routeTree.gen.ts is committed; regenerate with `npm run generate:routes`
+        enableRouteGeneration: false,
+      }),
+      react(),
+      tailwindcss(),
+      tsconfigPaths(),
+      // Cloudflare pre-bundles server deps during `vite dev` and breaks TanStack virtual imports
+      ...(isServe ? [] : [cloudflare()]),
+    ],
+    server: {
+      port: 5173,
+      strictPort: true,
+    },
+    optimizeDeps: {
+      exclude: tanstackOptimizeDepsExclude,
+    },
+    ssr: {
+      optimizeDeps: {
+        exclude: tanstackOptimizeDepsExclude,
+      },
+    },
+  };
+});

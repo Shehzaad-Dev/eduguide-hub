@@ -25,6 +25,23 @@ Ad management notes (RevBid — fast publisher approval):
 
 Ads lazy-load: script and zones load only after consent and when slots enter the viewport (top slot loads immediately after consent).
 
+## Local dev (Windows)
+
+1. **Only one** `npm run dev` at a time. If you see `Port 5173 is in use`, stop the old server:
+
+```powershell
+Get-NetTCPConnection -LocalPort 5173 -ErrorAction SilentlyContinue |
+  ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }
+Remove-Item -Recurse -Force node_modules\.vite -ErrorAction SilentlyContinue
+npm run dev
+```
+
+2. Open **http://localhost:5173/** (not 5174 unless you intentionally changed the port).
+
+3. If you add new route files, run `npm run generate:routes` once, then restart dev.
+
+4. `EPERM` on `routeTree.gen.ts` means a second Vite/IDE process is locking the file — close extra terminals and retry step 1.
+
 - Top banner: every page (below navbar).
 - Mid / bottom: homepage and blog articles.
 
