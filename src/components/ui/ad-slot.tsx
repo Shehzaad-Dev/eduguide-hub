@@ -1,12 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import DOMPurify from "dompurify";
+import { type AdPlacement, getZoneHtml, hasAdProviderConfigured } from "@/lib/ads-config";
+import { loadAdProviderScript } from "@/lib/load-ad-provider";
+import { useAdsConsent } from "@/lib/use-ads-consent";
 
 type AdSlotProps = {
   id?: string;
   className?: string;
   width?: number | string;
   height?: number | string;
+  /** RevBid zone HTML from env, or override with custom snippet. */
+  placement?: AdPlacement;
   adHtml?: string;
+  /** Load as soon as consent is granted (for above-the-fold slots). */
+  eager?: boolean;
   onLoad?: () => void;
 };
 
@@ -15,56 +22,83 @@ export function AdSlot({
   className,
   width = "100%",
   height = 90,
-  adHtml,
+  placement,
+  adHtml: adHtmlOverride,
+  eager = false,
   onLoad,
 }: AdSlotProps) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
-  const [consent, setConsent] = useState<"granted" | "denied" | null>(null);
+  const [inView, setInView] = useState(eager);
+  const consent = useAdsConsent();
+
+  const zoneHtml = placement ? getZoneHtml(placement) : undefined;
+  const adHtml = adHtmlOverride ?? zoneHtml;
+  const configured = hasAdProviderConfigured();
 
   useEffect(() => {
-    const stored = localStorage.getItem("ads-consent");
-    if (stored === "granted" || stored === "denied") setConsent(stored);
-
-    const handler = () => {
-      const v = localStorage.getItem("ads-consent");
-      if (v === "granted" || v === "denied") setConsent(v);
-    };
-
-    window.addEventListener("ads-consent-changed", handler);
-    return () => window.removeEventListener("ads-consent-changed", handler);
-  }, []);
-
-  useEffect(() => {
+    if (eager) {
+      setInView(true);
+      return;
+    }
     if (!ref.current) return;
 
     const node = ref.current;
-
     const io = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setVisible(true);
-        });
+        if (entries.some((e) => e.isIntersecting)) {
+          setInView(true);
+          io.disconnect();
+        }
       },
-      {
-        rootMargin: "200px",
-      },
+      { rootMargin: "200px", threshold: 0.01 },
     );
 
     io.observe(node);
     return () => io.disconnect();
-  }, []);
+  }, [eager]);
 
   useEffect(() => {
-    if (!visible) return;
+    if (!inView) return;
     if (consent !== "granted") return;
-    if (!ref.current || !adHtml) return;
+    loadAdProviderScript();
+  }, [inView, consent]);
 
-    const cleanHtml = DOMPurify.sanitize(adHtml);
+  useEffect(() => {
+    if (!inView) return;
+    if (consent !== "granted") return;
+    if (!ref.current) return;
 
-    ref.current.innerHTML = cleanHtml;
-    onLoad?.();
-  }, [visible, consent, adHtml, onLoad]);
+    const host = ref.current;
+    host.replaceChildren();
+
+    if (adHtml) {
+      const cleanHtml = DOMPurify.sanitize(adHtml, {
+        ADD_TAGS: ["script", "ins", "iframe", "div"],
+        ADD_ATTR: ["async", "defer", "src", "data-zone", "data-ad-slot", "id", "class", "style"],
+      });
+      host.innerHTML = cleanHtml;
+      host.querySelectorAll("script").forEach((oldScript) => {
+        const script = document.createElement("script");
+        Array.from(oldScript.attributes).forEach((attr) =>
+          script.setAttribute(attr.name, attr.value),
+        );
+        if (oldScript.textContent) script.textContent = oldScript.textContent;
+        oldScript.replaceWith(script);
+      });
+      onLoad?.();
+      return;
+    }
+
+    if (placement && configured) {
+      const zone = document.createElement("div");
+      zone.dataset.revbidPlacement = placement;
+      zone.dataset.adSlot = id ?? placement;
+      zone.className = "flex h-full min-h-[inherit] w-full items-center justify-center";
+      zone.setAttribute("aria-hidden", "true");
+      host.appendChild(zone);
+      onLoad?.();
+    }
+  }, [inView, consent, adHtml, placement, configured, id, onLoad]);
 
   const style: React.CSSProperties = {
     width: typeof width === "number" ? `${width}px` : width,
@@ -72,12 +106,31 @@ export function AdSlot({
     minHeight: typeof height === "number" ? `${height}px` : undefined,
   };
 
-  return (
-    <div id={id} className={className} ref={ref} style={style} aria-label="Ad slot">
-      {!visible && <div className="bg-muted w-full h-full" />}
+  const showPlaceholder = inView && consent === "granted" && !adHtml && !configured;
 
-      {visible && consent !== "granted" && (
-        <div className="text-sm text-muted-foreground p-2">Ad blocked until consent is given.</div>
+  return (
+    <div id={id} className={className} ref={ref} style={style} aria-label="Advertisement">
+      {!inView && (
+        <div className="h-full w-full animate-pulse rounded-inherit bg-muted" aria-hidden />
+      )}
+
+      {inView && consent === null && (
+        <div className="flex h-full items-center justify-center p-2 text-center text-xs text-muted-foreground">
+          Accept cookies to load ads
+        </div>
+      )}
+
+      {inView && consent === "denied" && (
+        <div className="flex h-full items-center justify-center p-2 text-center text-xs text-muted-foreground">
+          Ads disabled
+        </div>
+      )}
+
+      {showPlaceholder && (
+        <div className="flex h-full flex-col items-center justify-center gap-1 p-3 text-center text-xs text-muted-foreground">
+          <span className="font-medium text-foreground/70">Ad space</span>
+          <span>Add RevBid zone HTML in .env — see .env.example</span>
+        </div>
       )}
     </div>
   );

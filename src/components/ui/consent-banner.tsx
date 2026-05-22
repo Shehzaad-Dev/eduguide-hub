@@ -30,8 +30,8 @@ export function ConsentBanner() {
     <div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-8 md:bottom-8">
       <div className="rounded-lg bg-background/95 border border-border p-4 shadow-lg flex flex-col md:flex-row items-center gap-3">
         <div className="flex-1 text-sm text-muted-foreground">
-          We use ads to support this site. Consent allows personalized ads and ad-loading. You can
-          change this later in your browser settings.
+          We use ads (e.g. RevBid) to support EduGuide. Accepting loads ad scripts and cookies for
+          monetization. You can clear site data in your browser to reset this choice.
         </div>
         <div className="flex gap-2">
           <button onClick={denyConsent} className="btn btn-ghost">

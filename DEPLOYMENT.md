@@ -15,11 +15,18 @@ Affordable domain registrars:
 - **Cloudflare Registrar** — very transparent pricing and easy DNS management.
 - **Google Domains** — simple UI and reasonable pricing.
 
-Ad management notes:
+Ad management notes (RevBid — fast publisher approval):
 
-- Use a Consent Management Platform (CMP) if you run personalized ads (e.g., Cookiebot or a simple custom banner).
-- For greater control and revenue, use Google Ad Manager + Prebid for header bidding.
-- Start simple with Google AdSense and upgrade later.
+1. Sign up at https://revbid.net/register → **Create Account In Publisher**.
+2. Add your live domain, verify with **Head Tag** (paste into `VITE_REVBID_HEAD_HTML` in `.env.local`).
+3. After approval (~24–48h), copy your **script URL** and **zone HTML** into `.env.local` (see `.env.example`).
+4. On Cloudflare Pages / Vercel, add the same variables under **Environment variables** and redeploy.
+5. Upload `public/ads.txt` lines from the RevBid dashboard when provided.
+
+Ads lazy-load: script and zones load only after consent and when slots enter the viewport (top slot loads immediately after consent).
+
+- Top banner: every page (below navbar).
+- Mid / bottom: homepage and blog articles.
 
 Quick deploy example (Cloudflare Pages):
 

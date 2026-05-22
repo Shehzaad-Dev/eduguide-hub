@@ -2,11 +2,15 @@ import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import ConsentBanner from "../ui/consent-banner";
 import { PageStepper } from "./PageStepper";
+import { SiteTopAd } from "@/components/ads/site-top-ad";
+import { RevBidHead } from "@/components/ads/revbid-head";
 
 export function PageShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-dvh flex-col bg-background">
+      <RevBidHead />
       <Navbar />
+      <SiteTopAd />
       <main className="flex-1">{children}</main>
       <PageStepper />
       <Footer />

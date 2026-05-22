@@ -14,6 +14,7 @@ import {
 import type { ComponentType, ReactNode } from "react";
 import { PageShell } from "@/components/site/PageShell";
 import AdSlot from "@/components/ui/ad-slot";
+import { LazyImage } from "@/components/ui/lazy-image";
 import { SCHOLARSHIPS, UNIVERSITIES, PLATFORMS, CAREERS, TESTIMONIALS } from "@/data/site";
 import { ARTICLES } from "@/data/articles";
 import heroImg from "@/assets/hero-students.jpg";
@@ -44,19 +45,6 @@ function Home() {
 
   return (
     <PageShell>
-      {/* TOP AD */}
-      <section className="border-b border-border bg-soft">
-        <div className="container-px mx-auto max-w-7xl py-6">
-          <AdSlot
-            id="homepage-top-ad"
-            className="mx-auto rounded-3xl overflow-hidden border border-border bg-card shadow-card"
-            width="100%"
-            height={120}
-            adHtml={`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f8fafc;color:#334155;font-size:16px;">Top ad slot — replace this with your ad provider code</div>`}
-          />
-        </div>
-      </section>
-
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
@@ -128,11 +116,12 @@ function Home() {
 
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-accent/30 blur-3xl -z-10" />
-            <img
+            <LazyImage
               src={heroImg}
               alt="International students with books and graduation caps"
               width={1536}
               height={1024}
+              priority
               className="w-full h-auto rounded-3xl shadow-elegant border border-border"
             />
           </div>
@@ -144,10 +133,10 @@ function Home() {
         <div className="container-px mx-auto max-w-7xl">
           <AdSlot
             id="homepage-mid-ad"
+            placement="mid"
             className="mx-auto rounded-3xl overflow-hidden border border-border bg-card shadow-card"
             width="100%"
             height={150}
-            adHtml={`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f8fafc;color:#334155;font-size:16px;">Mid-page ad slot — replace with your ad provider script</div>`}
           />
         </div>
       </section>
@@ -406,10 +395,10 @@ function Home() {
         <div className="container-px mx-auto max-w-7xl">
           <AdSlot
             id="homepage-bottom-ad"
+            placement="bottom"
             className="mx-auto rounded-3xl overflow-hidden border border-border bg-card shadow-card"
             width="100%"
             height={170}
-            adHtml={`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f8fafc;color:#334155;font-size:16px;">Bottom ad slot — replace with your ad provider code</div>`}
           />
         </div>
       </section>

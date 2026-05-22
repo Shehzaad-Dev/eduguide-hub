@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageShell } from "@/components/site/PageShell";
+import AdSlot from "@/components/ui/ad-slot";
 import { ARTICLES } from "@/data/articles";
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
 
@@ -87,6 +88,16 @@ function Post() {
           <span className="inline-flex items-center gap-1.5">
             <Clock className="w-4 h-4" /> {article.readingTime} min read
           </span>
+        </div>
+
+        <div className="my-8">
+          <AdSlot
+            id="blog-mid-ad"
+            placement="mid"
+            className="mx-auto rounded-2xl overflow-hidden border border-border bg-card"
+            width="100%"
+            height={120}
+          />
         </div>
 
         <div className="prose-lg mt-10 space-y-6 text-foreground leading-relaxed">
