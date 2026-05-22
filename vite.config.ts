@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
 import { cloudflare } from "@cloudflare/vite-plugin";
+import { nitro } from "nitro/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import tanstackRouter from "@tanstack/router-plugin/vite";
 
@@ -26,11 +27,15 @@ export default defineConfig(({ command }) => {
         // routeTree.gen.ts is committed; regenerate with `npm run generate:routes`
         enableRouteGeneration: false,
       }),
+      // Vercel: Nitro emits .vercel/output so "/" SSR works. Local/CI without VERCEL uses Cloudflare.
+      ...(isServe
+        ? []
+        : process.env.VERCEL
+          ? [nitro({ preset: "vercel" })]
+          : [cloudflare()]),
       react(),
       tailwindcss(),
       tsconfigPaths(),
-      // Cloudflare pre-bundles server deps during `vite dev` and breaks TanStack virtual imports
-      ...(isServe ? [] : [cloudflare()]),
     ],
     server: {
       port: 5173,

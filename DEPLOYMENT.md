@@ -1,12 +1,12 @@
 **Deployment & Ads Guidance**
 
 - **Build command:** `npm run build`
-- **Output directory:** `dist`
+- **Output directory:** Cloudflare Pages → `dist`; **Vercel → leave empty** (Nitro writes `.vercel/output` when `VERCEL=1`)
 
 Recommended hosts for easy ad management and low cost:
 
-- **Cloudflare Pages (recommended)**: fast, cheap, first-class edge, integrates with `wrangler` and Workers. Good for ad logic at edge and privacy controls.
-- **Vercel**: frictionless for Next/Vite apps, automatic deploys, simple dashboard.
+- **Cloudflare Pages**: uses `cloudflare()` in `vite.config.ts` (default local/CI build without `VERCEL=1`).
+- **Vercel (TanStack Start)**: builds with Nitro `preset: "vercel"` when `VERCEL=1` (set automatically on Vercel). **Do not** set Output Directory to `dist` — leave it empty so Vercel uses Nitro’s `.vercel/output` Build Output API. Framework preset: **TanStack Start**. Redeploy without build cache after changing this.
 - **Netlify**: simple deploys and redirect rules; supports headers via `netlify.toml`.
 
 Affordable domain registrars:
