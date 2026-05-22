@@ -1,7 +1,9 @@
-import { TanStackStartViteInputConfig } from '@tanstack/start-plugin-core/vite';
-import { PluginOption } from 'vite';
-export declare function tanstackStart(options?: TanStackStartViteInputConfig & {
+import { TanStackStartViteInputConfig } from "@tanstack/start-plugin-core/vite";
+import { PluginOption } from "vite";
+export declare function tanstackStart(
+  options?: TanStackStartViteInputConfig & {
     rsc?: {
-        enabled?: boolean;
+      enabled?: boolean;
     };
-}): Array<PluginOption>;
+  },
+): Array<PluginOption>;

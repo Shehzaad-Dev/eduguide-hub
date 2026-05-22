@@ -7,7 +7,11 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About EduGuide — Our Mission for Global Education" },
-      { name: "description", content: "EduGuide is a trusted educational portal helping students worldwide find scholarships, universities, courses and careers." },
+      {
+        name: "description",
+        content:
+          "EduGuide is a trusted educational portal helping students worldwide find scholarships, universities, courses and careers.",
+      },
       { property: "og:url", content: "/about" },
     ],
     links: [{ rel: "canonical", href: "/about" }],
@@ -15,10 +19,26 @@ export const Route = createFileRoute("/about")({
 });
 
 const values = [
-  { icon: Target, title: "Student-first", text: "Every guide is written for real students with real goals." },
-  { icon: Heart, title: "Trusted information", text: "We verify every scholarship, deadline and program detail." },
-  { icon: Globe2, title: "Globally minded", text: "Opportunities from 50+ countries, covered honestly." },
-  { icon: Users, title: "Community-driven", text: "Built with feedback from 200k+ students worldwide." },
+  {
+    icon: Target,
+    title: "Student-first",
+    text: "Every guide is written for real students with real goals.",
+  },
+  {
+    icon: Heart,
+    title: "Trusted information",
+    text: "We verify every scholarship, deadline and program detail.",
+  },
+  {
+    icon: Globe2,
+    title: "Globally minded",
+    text: "Opportunities from 50+ countries, covered honestly.",
+  },
+  {
+    icon: Users,
+    title: "Community-driven",
+    text: "Built with feedback from 200k+ students worldwide.",
+  },
 ];
 
 function About() {
@@ -41,8 +61,17 @@ function About() {
         </div>
         <div className="prose-lg space-y-5 text-foreground leading-relaxed">
           <h2 className="text-2xl font-bold text-secondary">Our story</h2>
-          <p>EduGuide started with a simple belief: every student deserves clear, honest guidance about their future. Today, we serve hundreds of thousands of students with curated scholarships, university comparisons, online learning recommendations and career roadmaps.</p>
-          <p>We work directly with educators, scholarship alumni and industry professionals to publish content that genuinely helps — not generic listicles. Whether you're chasing a fully funded master's in Germany or your first job in AI, we're here to guide you.</p>
+          <p>
+            EduGuide started with a simple belief: every student deserves clear, honest guidance
+            about their future. Today, we serve hundreds of thousands of students with curated
+            scholarships, university comparisons, online learning recommendations and career
+            roadmaps.
+          </p>
+          <p>
+            We work directly with educators, scholarship alumni and industry professionals to
+            publish content that genuinely helps — not generic listicles. Whether you're chasing a
+            fully funded master's in Germany or your first job in AI, we're here to guide you.
+          </p>
         </div>
       </section>
     </PageShell>

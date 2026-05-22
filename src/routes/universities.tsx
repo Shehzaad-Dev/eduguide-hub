@@ -8,9 +8,16 @@ export const Route = createFileRoute("/universities")({
   head: () => ({
     meta: [
       { title: "Top Universities — Harvard, MIT, Oxford & more | EduGuide" },
-      { name: "description", content: "Explore the world's top-ranked universities including Harvard, MIT, Stanford, Oxford, Cambridge, ETH Zurich and more." },
+      {
+        name: "description",
+        content:
+          "Explore the world's top-ranked universities including Harvard, MIT, Stanford, Oxford, Cambridge, ETH Zurich and more.",
+      },
       { property: "og:title", content: "Top Universities | EduGuide" },
-      { property: "og:description", content: "Global rankings, programs and admissions for the world's best universities." },
+      {
+        property: "og:description",
+        content: "Global rankings, programs and admissions for the world's best universities.",
+      },
       { property: "og:url", content: "/universities" },
     ],
     links: [{ rel: "canonical", href: "/universities" }],
@@ -28,7 +35,10 @@ function Universities() {
       <section className="container-px mx-auto max-w-7xl py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {UNIVERSITIES.map((u) => (
-            <article key={u.name} className="p-7 rounded-2xl bg-card border border-border hover:shadow-card transition">
+            <article
+              key={u.name}
+              className="p-7 rounded-2xl bg-card border border-border hover:shadow-card transition"
+            >
               <div className="flex items-start gap-4">
                 <div className="grid place-items-center w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 font-display font-bold text-primary shrink-0">
                   {u.rank}
@@ -40,8 +50,12 @@ function Universities() {
                   </p>
                 </div>
               </div>
-              <a href={u.url} target="_blank" rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2 transition-all">
+              <a
+                href={u.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2 transition-all"
+              >
                 Visit website <ExternalLink className="w-4 h-4" />
               </a>
             </article>

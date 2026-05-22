@@ -19,5 +19,5 @@ export default defineConfig({
   ],
   optimizeDeps: {
     noDiscovery: true,
-  }
+  },
 });

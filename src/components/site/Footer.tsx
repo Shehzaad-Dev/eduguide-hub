@@ -91,7 +91,10 @@ export function Footer() {
               <ul className="space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l.to}>
-                    <Link to={l.to} className="text-sm text-secondary-foreground/70 hover:text-accent transition-colors">
+                    <Link
+                      to={l.to}
+                      className="text-sm text-secondary-foreground/70 hover:text-accent transition-colors"
+                    >
                       {l.label}
                     </Link>
                   </li>
@@ -103,7 +106,9 @@ export function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="container-px mx-auto max-w-7xl py-6 flex flex-col sm:flex-row justify-between gap-3 text-xs text-secondary-foreground/60">
-          <p>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} {SITE.name}. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

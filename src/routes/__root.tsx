@@ -73,13 +73,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "EduGuide — Your Gateway to Global Education & Career Success" },
-      { name: "description", content: "EduGuide helps students find scholarships, top universities, online courses and career paths worldwide. Trusted guidance for studying abroad." },
-      { name: "keywords", content: "scholarships, study abroad, universities, online courses, career guidance, international students" },
+      {
+        name: "description",
+        content:
+          "EduGuide helps students find scholarships, top universities, online courses and career paths worldwide. Trusted guidance for studying abroad.",
+      },
+      {
+        name: "keywords",
+        content:
+          "scholarships, study abroad, universities, online courses, career guidance, international students",
+      },
       { name: "author", content: "EduGuide" },
       { name: "theme-color", content: "#2563EB" },
       { property: "og:site_name", content: "EduGuide" },
       { property: "og:title", content: "EduGuide — Your Gateway to Global Education" },
-      { property: "og:description", content: "Scholarships, universities, online courses and career paths for ambitious students." },
+      {
+        property: "og:description",
+        content:
+          "Scholarships, universities, online courses and career paths for ambitious students.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@EduGuide" },
@@ -88,7 +100,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap",
+      },
     ],
     scripts: [
       {
@@ -97,7 +112,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "EduGuide",
-          description: "Educational portal for scholarships, universities, online courses and career guidance.",
+          description:
+            "Educational portal for scholarships, universities, online courses and career guidance.",
         }),
       },
     ],

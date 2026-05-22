@@ -54,17 +54,17 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.21 0.04 265);
 
-  --primary: oklch(0.56 0.21 263);            /* #2563EB */
+  --primary: oklch(0.56 0.21 263); /* #2563EB */
   --primary-foreground: oklch(0.99 0 0);
   --primary-glow: oklch(0.7 0.18 255);
 
-  --secondary: oklch(0.21 0.04 265);          /* #0F172A */
+  --secondary: oklch(0.21 0.04 265); /* #0F172A */
   --secondary-foreground: oklch(0.99 0 0);
 
-  --accent: oklch(0.78 0.16 75);              /* #F59E0B */
+  --accent: oklch(0.78 0.16 75); /* #F59E0B */
   --accent-foreground: oklch(0.21 0.04 265);
 
-  --soft: oklch(0.98 0.005 250);              /* #F8FAFC */
+  --soft: oklch(0.98 0.005 250); /* #F8FAFC */
   --soft-foreground: oklch(0.21 0.04 265);
 
   --muted: oklch(0.97 0.005 250);
@@ -76,9 +76,11 @@
   --input: oklch(0.92 0.01 255);
   --ring: oklch(0.56 0.21 263);
 
-  --gradient-hero: linear-gradient(135deg,
+  --gradient-hero: linear-gradient(
+    135deg,
     color-mix(in oklab, var(--primary) 12%, white) 0%,
-    color-mix(in oklab, var(--accent) 10%, white) 100%);
+    color-mix(in oklab, var(--accent) 10%, white) 100%
+  );
   --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-glow));
   --gradient-accent: linear-gradient(135deg, var(--accent), oklch(0.85 0.14 60));
 }
@@ -107,8 +109,12 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -116,7 +122,12 @@
     font-feature-settings: "cv11", "ss01";
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
@@ -124,6 +135,10 @@
 
 @utility container-px {
   padding-inline: 1rem;
-  @media (min-width: 640px) { padding-inline: 1.5rem; }
-  @media (min-width: 1024px) { padding-inline: 2rem; }
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 2rem;
+  }
 }

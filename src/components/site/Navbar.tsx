@@ -16,17 +16,24 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => { setOpen(false); }, [location.pathname]);
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
 
   return (
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all border-b",
-        scrolled ? "bg-background/85 backdrop-blur-md border-border shadow-sm" : "bg-background/60 backdrop-blur-sm border-transparent"
+        scrolled
+          ? "bg-background/85 backdrop-blur-md border-border shadow-sm"
+          : "bg-background/60 backdrop-blur-sm border-transparent",
       )}
     >
       <nav className="container-px mx-auto max-w-7xl flex items-center justify-between h-16">
-        <Link to="/" className="flex items-center gap-2 font-display font-bold text-lg text-secondary">
+        <Link
+          to="/"
+          className="flex items-center gap-2 font-display font-bold text-lg text-secondary"
+        >
           <span className="grid place-items-center w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary-glow text-primary-foreground shadow-elegant">
             <GraduationCap className="w-5 h-5" />
           </span>

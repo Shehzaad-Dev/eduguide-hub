@@ -17,7 +17,9 @@ export function PageStepper() {
             to={previous?.to ?? NAV[0].to}
             className={cn(
               "inline-flex items-center justify-center h-10 w-10 rounded-full border transition",
-              previous ? "bg-white/90 text-secondary border-border hover:bg-primary/10" : "bg-muted text-muted-foreground cursor-not-allowed border-border"
+              previous
+                ? "bg-white/90 text-secondary border-border hover:bg-primary/10"
+                : "bg-muted text-muted-foreground cursor-not-allowed border-border",
             )}
             aria-disabled={!previous}
           >
@@ -35,7 +37,7 @@ export function PageStepper() {
                     "inline-flex h-10 min-w-[44px] items-center justify-center rounded-full border px-4 text-sm font-semibold transition",
                     isActive
                       ? "bg-primary text-primary-foreground border-transparent shadow-elegant"
-                      : "bg-white/90 text-secondary border-border hover:border-primary/60 hover:bg-primary/10"
+                      : "bg-white/90 text-secondary border-border hover:border-primary/60 hover:bg-primary/10",
                   )}
                   aria-label={`Go to page ${index + 1}: ${item.label}`}
                 >
@@ -49,7 +51,9 @@ export function PageStepper() {
             to={next?.to ?? NAV[NAV.length - 1].to}
             className={cn(
               "inline-flex items-center justify-center h-10 w-10 rounded-full border transition",
-              next ? "bg-white/90 text-secondary border-border hover:bg-primary/10" : "bg-muted text-muted-foreground cursor-not-allowed border-border"
+              next
+                ? "bg-white/90 text-secondary border-border hover:bg-primary/10"
+                : "bg-muted text-muted-foreground cursor-not-allowed border-border",
             )}
             aria-disabled={!next}
           >

@@ -1,5 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Search, Award, GraduationCap, Globe2, TrendingUp, Sparkles, BookOpen, Star, CheckCircle2 } from "lucide-react";
+import {
+  ArrowRight,
+  Search,
+  Award,
+  GraduationCap,
+  Globe2,
+  TrendingUp,
+  Sparkles,
+  BookOpen,
+  Star,
+  CheckCircle2,
+} from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
 import { PageShell } from "@/components/site/PageShell";
 import AdSlot from "@/components/ui/ad-slot";
@@ -12,9 +23,16 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "EduGuide — Scholarships, Universities & Online Courses" },
-      { name: "description", content: "Find fully funded scholarships, top universities, online certifications and career roadmaps. EduGuide is your trusted gateway to global education." },
+      {
+        name: "description",
+        content:
+          "Find fully funded scholarships, top universities, online certifications and career roadmaps. EduGuide is your trusted gateway to global education.",
+      },
       { property: "og:title", content: "EduGuide — Scholarships, Universities & Online Courses" },
-      { property: "og:description", content: "Trusted educational portal helping students study abroad and build careers." },
+      {
+        property: "og:description",
+        content: "Trusted educational portal helping students study abroad and build careers.",
+      },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -57,8 +75,8 @@ function Home() {
               & Career Success
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-xl leading-relaxed">
-              Discover fully funded scholarships, world-class universities, top online platforms and career
-              paths — all in one trusted student hub.
+              Discover fully funded scholarships, world-class universities, top online platforms and
+              career paths — all in one trusted student hub.
             </p>
 
             <form
@@ -80,10 +98,16 @@ function Home() {
             </form>
 
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link to="/scholarships" className="inline-flex items-center gap-2 h-11 px-5 rounded-lg bg-secondary text-secondary-foreground text-sm font-semibold hover:opacity-90 transition">
+              <Link
+                to="/scholarships"
+                className="inline-flex items-center gap-2 h-11 px-5 rounded-lg bg-secondary text-secondary-foreground text-sm font-semibold hover:opacity-90 transition"
+              >
                 Browse Scholarships <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link to="/study-abroad" className="inline-flex items-center gap-2 h-11 px-5 rounded-lg bg-white border border-border text-sm font-semibold hover:bg-soft transition">
+              <Link
+                to="/study-abroad"
+                className="inline-flex items-center gap-2 h-11 px-5 rounded-lg bg-white border border-border text-sm font-semibold hover:bg-soft transition"
+              >
                 Study Abroad Guide
               </Link>
             </div>
@@ -139,8 +163,13 @@ function Home() {
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {SCHOLARSHIPS.map((s) => (
-            <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"
-              className="group p-6 rounded-2xl bg-card border border-border hover:border-primary/40 hover:shadow-card transition-all">
+            <a
+              key={s.name}
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-6 rounded-2xl bg-card border border-border hover:border-primary/40 hover:shadow-card transition-all"
+            >
               <div className="flex items-start justify-between">
                 <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-accent-foreground bg-accent/20 px-2 py-1 rounded">
                   {s.funding}
@@ -152,7 +181,8 @@ function Home() {
               </h3>
               <p className="mt-2 text-sm text-muted-foreground">{s.level}</p>
               <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                Learn more <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                Learn more{" "}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </a>
           ))}
@@ -171,13 +201,20 @@ function Home() {
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {UNIVERSITIES.map((u) => (
-            <a key={u.name} href={u.url} target="_blank" rel="noopener noreferrer"
-              className="group p-6 rounded-2xl bg-card border border-border hover:shadow-card transition-all flex gap-4 items-start">
+            <a
+              key={u.name}
+              href={u.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-6 rounded-2xl bg-card border border-border hover:shadow-card transition-all flex gap-4 items-start"
+            >
               <div className="grid place-items-center w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 text-primary font-display font-bold text-sm shrink-0">
                 {u.rank}
               </div>
               <div className="min-w-0">
-                <h3 className="font-semibold text-secondary group-hover:text-primary transition-colors">{u.name}</h3>
+                <h3 className="font-semibold text-secondary group-hover:text-primary transition-colors">
+                  {u.name}
+                </h3>
                 <p className="text-sm text-muted-foreground mt-1 flex items-center gap-1.5">
                   <Globe2 className="w-3.5 h-3.5" /> {u.country}
                 </p>
@@ -198,8 +235,13 @@ function Home() {
       >
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {PLATFORMS.map((p) => (
-            <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer"
-              className="group p-6 rounded-2xl bg-gradient-to-br from-soft to-card border border-border hover:border-primary/40 hover:shadow-card transition-all">
+            <a
+              key={p.name}
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-6 rounded-2xl bg-gradient-to-br from-soft to-card border border-border hover:border-primary/40 hover:shadow-card transition-all"
+            >
               <div className="font-display font-bold text-lg text-secondary group-hover:text-primary transition-colors">
                 {p.name}
               </div>
@@ -224,7 +266,10 @@ function Home() {
       >
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {CAREERS.map((c) => (
-            <div key={c.title} className="p-6 rounded-2xl bg-card border border-border hover:shadow-card transition">
+            <div
+              key={c.title}
+              className="p-6 rounded-2xl bg-card border border-border hover:shadow-card transition"
+            >
               <h3 className="font-semibold text-secondary text-lg">{c.title}</h3>
               <div className="mt-4 flex items-center justify-between text-sm">
                 <div>
@@ -248,13 +293,20 @@ function Home() {
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 px-3 py-1 rounded-full">
               Student Stories
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl font-bold text-secondary">Loved by ambitious students everywhere</h2>
+            <h2 className="mt-4 text-3xl md:text-4xl font-bold text-secondary">
+              Loved by ambitious students everywhere
+            </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {TESTIMONIALS.map((t) => (
-              <figure key={t.name} className="p-7 rounded-2xl bg-card border border-border shadow-card">
+              <figure
+                key={t.name}
+                className="p-7 rounded-2xl bg-card border border-border shadow-card"
+              >
                 <div className="flex gap-0.5 mb-4 text-accent">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-current" />
+                  ))}
                 </div>
                 <blockquote className="text-foreground leading-relaxed">“{t.quote}”</blockquote>
                 <figcaption className="mt-5 pt-5 border-t border-border">
@@ -275,21 +327,32 @@ function Home() {
               <span className="inline-block text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 px-3 py-1 rounded-full">
                 Latest Articles
               </span>
-              <h2 className="mt-4 text-3xl md:text-4xl font-bold text-secondary">From the EduGuide blog</h2>
+              <h2 className="mt-4 text-3xl md:text-4xl font-bold text-secondary">
+                From the EduGuide blog
+              </h2>
             </div>
-            <Link to="/blog" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2 transition-all">
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2 transition-all"
+            >
               All articles <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {latest.map((a) => (
-              <Link key={a.slug} to="/blog/$slug" params={{ slug: a.slug }}
-                className="group p-7 rounded-2xl bg-card border border-border hover:shadow-elegant transition-all flex flex-col">
+              <Link
+                key={a.slug}
+                to="/blog/$slug"
+                params={{ slug: a.slug }}
+                className="group p-7 rounded-2xl bg-card border border-border hover:shadow-elegant transition-all flex flex-col"
+              >
                 <span className="text-xs font-semibold text-primary">{a.category}</span>
                 <h3 className="mt-3 text-lg font-semibold text-secondary group-hover:text-primary transition-colors">
                   {a.title}
                 </h3>
-                <p className="mt-2 text-sm text-muted-foreground line-clamp-3 flex-1">{a.excerpt}</p>
+                <p className="mt-2 text-sm text-muted-foreground line-clamp-3 flex-1">
+                  {a.excerpt}
+                </p>
                 <div className="mt-5 text-xs text-muted-foreground">{a.readingTime} min read</div>
               </Link>
             ))}
@@ -300,14 +363,27 @@ function Home() {
       {/* NEWSLETTER CTA */}
       <section className="py-20 md:py-28">
         <div className="container-px mx-auto max-w-5xl">
-          <div className="relative overflow-hidden rounded-3xl p-10 md:p-16 text-center text-primary-foreground shadow-elegant" style={{ background: "var(--gradient-primary)" }}>
-            <div className="absolute inset-0 opacity-30 -z-0" style={{ background: "radial-gradient(circle at 30% 20%, white 0%, transparent 50%)" }} />
+          <div
+            className="relative overflow-hidden rounded-3xl p-10 md:p-16 text-center text-primary-foreground shadow-elegant"
+            style={{ background: "var(--gradient-primary)" }}
+          >
+            <div
+              className="absolute inset-0 opacity-30 -z-0"
+              style={{
+                background: "radial-gradient(circle at 30% 20%, white 0%, transparent 50%)",
+              }}
+            />
             <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold">Get weekly scholarship & career updates</h2>
+              <h2 className="text-3xl md:text-4xl font-bold">
+                Get weekly scholarship & career updates
+              </h2>
               <p className="mt-3 text-primary-foreground/85 max-w-xl mx-auto">
                 Join 50,000+ students. New opportunities every week, straight to your inbox.
               </p>
-              <form onSubmit={(e) => e.preventDefault()} className="mt-7 flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="mt-7 flex flex-col sm:flex-row gap-2 max-w-md mx-auto"
+              >
                 <input
                   type="email"
                   placeholder="your@email.com"
@@ -341,9 +417,24 @@ function Home() {
   );
 }
 
-function Section({ eyebrow, title, description, ctaTo, ctaLabel, icon: Icon, soft, children }: {
-  eyebrow: string; title: string; description: string; ctaTo: string; ctaLabel: string;
-  icon: ComponentType<{ className?: string }>; soft?: boolean; children: ReactNode;
+function Section({
+  eyebrow,
+  title,
+  description,
+  ctaTo,
+  ctaLabel,
+  icon: Icon,
+  soft,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+  ctaTo: string;
+  ctaLabel: string;
+  icon: ComponentType<{ className?: string }>;
+  soft?: boolean;
+  children: ReactNode;
 }) {
   return (
     <section className={`py-20 md:py-24 ${soft ? "bg-soft border-y border-border" : ""}`}>
@@ -356,7 +447,10 @@ function Section({ eyebrow, title, description, ctaTo, ctaLabel, icon: Icon, sof
             <h2 className="mt-4 text-3xl md:text-4xl font-bold text-secondary">{title}</h2>
             <p className="mt-3 text-muted-foreground leading-relaxed">{description}</p>
           </div>
-          <Link to={ctaTo} className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2 transition-all whitespace-nowrap">
+          <Link
+            to={ctaTo}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2 transition-all whitespace-nowrap"
+          >
             {ctaLabel} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
