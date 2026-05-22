@@ -6,18 +6,16 @@ import { cloudflare } from "@cloudflare/vite-plugin";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import tanstackRouter from "@tanstack/router-plugin/vite";
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [
-    tailwindcss(),
-    tsconfigPaths(),
-    tanstackRouter(),
     tanstackStart({
       server: { entry: "server" },
     }),
+    tanstackRouter(),
     react(),
-    cloudflare(),
+    tailwindcss(),
+    tsconfigPaths(),
+    // Cloudflare pre-bundles server deps during `vite dev` and breaks TanStack virtual imports
+    ...(command === "serve" ? [] : [cloudflare()]),
   ],
-  optimizeDeps: {
-    noDiscovery: true,
-  },
-});
+}));
