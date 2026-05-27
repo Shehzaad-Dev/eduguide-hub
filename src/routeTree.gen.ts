@@ -20,6 +20,7 @@ import { Route as OnlineLearningRouteImport } from './routes/online-learning'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as CoursesRouteImport } from './routes/courses'
+import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareerGuidanceRouteImport } from './routes/career-guidance'
 import { Route as AboutRouteImport } from './routes/about'
@@ -82,6 +83,11 @@ const CoursesRoute = CoursesRouteImport.update({
   path: '/courses',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CookiePolicyRoute = CookiePolicyRouteImport.update({
+  id: '/cookie-policy',
+  path: '/cookie-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -118,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/career-guidance': typeof CareerGuidanceRoute
   '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/courses': typeof CoursesRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
@@ -137,6 +144,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/career-guidance': typeof CareerGuidanceRoute
   '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/courses': typeof CoursesRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
@@ -157,6 +165,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/career-guidance': typeof CareerGuidanceRoute
   '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/courses': typeof CoursesRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
@@ -178,6 +187,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/career-guidance'
     | '/contact'
+    | '/cookie-policy'
     | '/courses'
     | '/disclaimer'
     | '/faq'
@@ -197,6 +207,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/career-guidance'
     | '/contact'
+    | '/cookie-policy'
     | '/courses'
     | '/disclaimer'
     | '/faq'
@@ -216,6 +227,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/career-guidance'
     | '/contact'
+    | '/cookie-policy'
     | '/courses'
     | '/disclaimer'
     | '/faq'
@@ -236,6 +248,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CareerGuidanceRoute: typeof CareerGuidanceRoute
   ContactRoute: typeof ContactRoute
+  CookiePolicyRoute: typeof CookiePolicyRoute
   CoursesRoute: typeof CoursesRoute
   DisclaimerRoute: typeof DisclaimerRoute
   FaqRoute: typeof FaqRoute
@@ -330,6 +343,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CoursesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cookie-policy': {
+      id: '/cookie-policy'
+      path: '/cookie-policy'
+      fullPath: '/cookie-policy'
+      preLoaderRoute: typeof CookiePolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -380,6 +400,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CareerGuidanceRoute: CareerGuidanceRoute,
   ContactRoute: ContactRoute,
+  CookiePolicyRoute: CookiePolicyRoute,
   CoursesRoute: CoursesRoute,
   DisclaimerRoute: DisclaimerRoute,
   FaqRoute: FaqRoute,
