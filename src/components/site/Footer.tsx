@@ -34,6 +34,7 @@ const cols = [
     title: "Legal",
     links: [
       { to: "/privacy", label: "Privacy Policy" },
+      { to: "/cookie-policy", label: "Cookie Policy" },
       { to: "/disclaimer", label: "Disclaimer" },
     ],
   },

@@ -9,7 +9,7 @@ export function SiteTopAd() {
           id="site-top-ad"
           placement="top"
           eager
-          className="mx-auto rounded-2xl overflow-hidden border border-border bg-card shadow-card"
+          className="mx-auto rounded-lg overflow-hidden"
           width="100%"
           height={90}
         />

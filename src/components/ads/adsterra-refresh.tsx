@@ -244,49 +244,33 @@ export function AdsterraAutoRefreshBanners() {
         <div className="grid gap-6 lg:grid-cols-[1.5fr,1fr]">
           <div
             id="adsterra-728x90-banner"
-            className="overflow-hidden rounded-3xl border border-border bg-card shadow-card"
+            className="overflow-hidden rounded-lg"
             style={{ minHeight: "90px" }}
             aria-label="Adsterra 728x90 leaderboard ad"
-          >
-            <div className="flex h-full w-full items-center justify-center p-4 text-sm text-muted-foreground">
-              Loading Adsterra 728x90 leaderboard...
-            </div>
-          </div>
+          />
 
           <div className="grid gap-6">
             <div
               id="adsterra-468x60-banner"
-              className="overflow-hidden rounded-3xl border border-border bg-card shadow-card"
+              className="overflow-hidden rounded-lg"
               style={{ minHeight: "60px" }}
               aria-label="Adsterra 468x60 banner"
-            >
-              <div className="flex h-full w-full items-center justify-center p-4 text-sm text-muted-foreground">
-                Loading Adsterra 468x60 banner...
-              </div>
-            </div>
+            />
 
             <div className="grid gap-6 lg:grid-cols-2">
               <div
                 id="adsterra-320x50-banner"
-                className="overflow-hidden rounded-3xl border border-border bg-card shadow-card"
+                className="overflow-hidden rounded-lg"
                 style={{ minHeight: "50px" }}
                 aria-label="Adsterra 320x50 mobile banner"
-              >
-                <div className="flex h-full w-full items-center justify-center p-4 text-sm text-muted-foreground">
-                  Loading Adsterra 320x50 banner...
-                </div>
-              </div>
+              />
 
               <div
                 id="adsterra-160x300-banner"
-                className="overflow-hidden rounded-3xl border border-border bg-card shadow-card"
+                className="overflow-hidden rounded-lg"
                 style={{ minHeight: "300px" }}
                 aria-label="Adsterra 160x300 skyscraper"
-              >
-                <div className="flex h-full w-full items-center justify-center p-4 text-sm text-muted-foreground">
-                  Loading Adsterra 160x300 skyscraper...
-                </div>
-              </div>
+              />
             </div>
           </div>
         </div>
@@ -294,25 +278,17 @@ export function AdsterraAutoRefreshBanners() {
         <div className="grid gap-6 lg:grid-cols-[1fr,1fr] items-start">
           <div
             id="adsterra-300x250-banner"
-            className="overflow-hidden rounded-3xl border border-border bg-card shadow-card"
+            className="overflow-hidden rounded-lg"
             style={{ minHeight: "250px" }}
             aria-label="Adsterra 300x250 rectangle ad"
-          >
-            <div className="flex h-full w-full items-center justify-center p-4 text-sm text-muted-foreground">
-              Loading Adsterra 300x250 rectangle...
-            </div>
-          </div>
+          />
 
           <div
             id="ecpm-665391dd4f2164b4ccf56626f8253562"
-            className="overflow-hidden rounded-3xl border border-border bg-card shadow-card"
+            className="overflow-hidden rounded-lg"
             style={{ minHeight: "90px" }}
             aria-label="Effective CPM network banner"
-          >
-            <div className="flex h-full w-full items-center justify-center p-4 text-sm text-muted-foreground">
-              Loading Effective CPM network ad...
-            </div>
-          </div>
+          />
         </div>
       </div>
     </section>

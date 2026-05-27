@@ -114,23 +114,12 @@ export function AdSlot({
         <div className="h-full w-full animate-pulse rounded-inherit bg-muted" aria-hidden />
       )}
 
-      {inView && consent === null && (
-        <div className="flex h-full items-center justify-center p-2 text-center text-xs text-muted-foreground">
-          Accept cookies to load ads
-        </div>
-      )}
-
       {inView && consent === "denied" && (
-        <div className="flex h-full items-center justify-center p-2 text-center text-xs text-muted-foreground">
-          Ads disabled
-        </div>
+        <div className="h-full w-full" aria-hidden />
       )}
 
       {showPlaceholder && (
-        <div className="flex h-full flex-col items-center justify-center gap-1 p-3 text-center text-xs text-muted-foreground">
-          <span className="font-medium text-foreground/70">Ad space</span>
-          <span>Add RevBid zone HTML in .env — see .env.example</span>
-        </div>
+        <div className="h-full w-full" aria-hidden />
       )}
     </div>
   );
