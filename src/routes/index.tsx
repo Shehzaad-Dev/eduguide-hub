@@ -14,6 +14,7 @@ import {
 import type { ComponentType, ReactNode } from "react";
 import { PageShell } from "@/components/site/PageShell";
 import AdSlot from "@/components/ui/ad-slot";
+import { AdsterraAutoRefreshBanners } from "@/components/ads/adsterra-refresh";
 import { LazyImage } from "@/components/ui/lazy-image";
 import { SCHOLARSHIPS, UNIVERSITIES, PLATFORMS, CAREERS, TESTIMONIALS } from "@/data/site";
 import { ARTICLES } from "@/data/articles";
@@ -45,6 +46,8 @@ function Home() {
 
   return (
     <PageShell>
+      <AdsterraAutoRefreshBanners />
+
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
