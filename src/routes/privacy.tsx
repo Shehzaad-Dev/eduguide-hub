@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHeader } from "@/components/site/PageShell";
+import AdSlot from "@/components/ui/ad-slot";
 
 export const Route = createFileRoute("/privacy")({
   component: Page,
@@ -45,6 +46,15 @@ function Page() {
           We use data to deliver newsletter content you subscribe to, personalize content, detect
           misuse, and improve the site. We do not sell personal data.
         </p>
+
+        <AdSlot
+          id="privacy-inline-ad"
+          placement="mid"
+          collapseIfEmpty
+          className="mx-auto my-8 overflow-hidden rounded-2xl border border-border bg-card"
+          width="100%"
+          height={100}
+        />
 
         <h2 className="text-2xl font-bold text-secondary mt-8">Security and retention</h2>
         <p>

@@ -94,6 +94,7 @@ function Post() {
           <AdSlot
             id="blog-mid-ad"
             placement="mid"
+            collapseIfEmpty
             className="mx-auto rounded-2xl overflow-hidden border border-border bg-card"
             width="100%"
             height={120}
@@ -126,6 +127,15 @@ function Post() {
             gathering documents, drafting essays and contacting referees at least six months in
             advance.
           </p>
+
+          <AdSlot
+            id={`blog-content-inline-ad-${article.slug}`}
+            placement="mid"
+            collapseIfEmpty
+            className="mx-auto my-8 overflow-hidden rounded-2xl border border-border bg-card"
+            width="100%"
+            height={110}
+          />
           <h2 className="text-2xl font-bold text-secondary mt-10">Career outlook</h2>
           <p>
             Graduates report significant salary uplift and faster promotion. According to recent

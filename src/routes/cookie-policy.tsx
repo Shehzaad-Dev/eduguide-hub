@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/site/PageShell";
 import { PageHeader } from "@/components/site/PageShell";
+import AdSlot from "@/components/ui/ad-slot";
 
 export const Route = createFileRoute("/cookie-policy")({
   component: CookiePolicy,
@@ -95,14 +96,23 @@ function CookiePolicy() {
 
             <h2>Your Cookie Consent</h2>
             <p>
-              When you first visit EduGuide, we automatically enable cookies to provide the best user
-              experience and support free educational content through advertising. You can:
+              When you first visit EduGuide, we show a consent popup before loading advertising
+              cookies. You can:
             </p>
             <ul>
-              <li>Accept all cookies (default for seamless experience)</li>
+              <li>Accept cookies to enable ads and personalized experiences</li>
               <li>Decline cookies (ads will not load)</li>
               <li>Clear cookies at any time using your browser settings</li>
             </ul>
+
+            <AdSlot
+              id="cookie-policy-inline-ad"
+              placement="mid"
+              collapseIfEmpty
+              className="mx-auto my-8 overflow-hidden rounded-2xl border border-border bg-card"
+              width="100%"
+              height={100}
+            />
 
             <h2>Managing Your Cookies</h2>
             <p>Most web browsers allow you to control cookies through settings. You can:</p>

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageShell, PageHeader } from "@/components/site/PageShell";
+import AdSlot from "@/components/ui/ad-slot";
 import { ARTICLES, type Article } from "@/data/articles";
 import { Clock, Search } from "lucide-react";
 
@@ -77,6 +78,17 @@ function Blog() {
               </button>
             ))}
           </div>
+        </div>
+
+        <div className="mb-8">
+          <AdSlot
+            id="blog-listing-inline-ad"
+            placement="mid"
+            collapseIfEmpty
+            className="mx-auto overflow-hidden rounded-2xl border border-border bg-card"
+            width="100%"
+            height={110}
+          />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
