@@ -224,20 +224,12 @@ export function AdsterraAutoRefreshBanners() {
               />
             </div>
 
-            <div className="grid gap-3 md:grid-cols-2">
-              <div
-                id="adsterra-300x250-banner"
-                className="overflow-hidden rounded-xl"
-                style={{ minHeight: "250px" }}
-                aria-label="Adsterra 300x250 rectangle ad"
-              />
-              <div
-                id="ecpm-665391dd4f2164b4ccf56626f8253562"
-                className="overflow-hidden rounded-xl"
-                style={{ minHeight: "90px" }}
-                aria-label="Effective CPM network banner"
-              />
-            </div>
+            <div
+              id="adsterra-300x250-banner"
+              className="overflow-hidden rounded-xl"
+              style={{ minHeight: "250px" }}
+              aria-label="Adsterra 300x250 rectangle ad"
+            />
           </div>
 
           <aside className="hidden xl:grid gap-3 justify-items-center">

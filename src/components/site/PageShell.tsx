@@ -3,7 +3,6 @@ import { Footer } from "./Footer";
 import ConsentBanner from "../ui/consent-banner";
 import { PageStepper } from "./PageStepper";
 import { AdsterraAutoRefreshBanners } from "@/components/ads/adsterra-refresh";
-import { SiteTopAd } from "@/components/ads/site-top-ad";
 import { RevBidHead } from "@/components/ads/revbid-head";
 
 export function PageShell({ children }: { children: React.ReactNode }) {
@@ -11,7 +10,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-dvh flex-col bg-background">
       <RevBidHead />
       <Navbar />
-      <SiteTopAd />
+      <AdsterraAutoRefreshBanners />
       <main className="flex-1">{children}</main>
       <PageStepper />
       <Footer />
