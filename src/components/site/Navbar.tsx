@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { GraduationCap, Menu, X } from "lucide-react";
 import { NAV, SITE } from "@/data/site";
 import { cn } from "@/lib/utils";
+import { maybeOpenSmartLink } from "@/lib/smart-link";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -57,6 +58,8 @@ export function Navbar() {
         <div className="hidden lg:flex items-center gap-2">
           <Link
             to="/scholarships"
+            onClick={maybeOpenSmartLink}
+            title="Sponsored offer may open in a new tab"
             className="inline-flex items-center justify-center h-10 px-5 rounded-lg bg-gradient-to-r from-primary to-primary-glow text-primary-foreground text-sm font-semibold shadow-elegant hover:shadow-glow transition-shadow"
           >
             Find Scholarships
@@ -89,6 +92,8 @@ export function Navbar() {
             <li className="pt-2">
               <Link
                 to="/scholarships"
+                onClick={maybeOpenSmartLink}
+                title="Sponsored offer may open in a new tab"
                 className="block text-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-primary to-primary-glow text-primary-foreground text-sm font-semibold"
               >
                 Find Scholarships

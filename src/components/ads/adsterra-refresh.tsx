@@ -69,6 +69,16 @@ const adConfigs: AdConfig[] = [
       "https://www.highperformanceformat.com/6a3d74765ba7b3ca957314a241ef3aa1/invoke.js",
   },
   {
+    id: "adsterra-160x600-banner",
+    label: "Adsterra 160x600 wide skyscraper",
+    width: 160,
+    height: 600,
+    provider: "adsterra",
+    key: "2c048d071be4697b86112ff8581145da",
+    invokeUrl:
+      "https://www.highperformanceformat.com/2c048d071be4697b86112ff8581145da/invoke.js",
+  },
+  {
     id: "ecpm-665391dd4f2164b4ccf56626f8253562",
     label: "Effective CPM network banner",
     width: 728,
@@ -99,9 +109,6 @@ const adConfigs: AdConfig[] = [
     containerId: "container-ecpm-socialbar",
   },
 ];
-
-const SMART_LINK_URL =
-  "https://www.effectivecpmnetwork.com/pn466aiwkn?key=1ca04b32e719df4207d5b03e53f0709c";
 
 function buildAtOptionsScript(config: AdConfig) {
   return `window.atOptions = {
@@ -262,103 +269,69 @@ export function AdsterraAutoRefreshBanners() {
   }, []);
 
   return (
-    <section className="border-b border-border bg-soft" aria-label="Top homepage ads">
-      <div className="container-px mx-auto max-w-7xl py-4 grid gap-4">
-        <div className="grid gap-4 lg:grid-cols-[1.6fr,1fr] items-start">
-          <div className="grid gap-4">
+    <section className="border-b border-border bg-soft/70" aria-label="Top site ads">
+      <div className="container-px mx-auto max-w-7xl py-3 grid gap-3">
+        <div
+          id="adsterra-728x90-banner"
+          className="overflow-hidden rounded-xl"
+          style={{ minHeight: "90px" }}
+          aria-label="Adsterra 728x90 leaderboard ad"
+        />
+
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-[1.1fr,0.8fr,0.9fr,0.5fr] items-start">
+          <div
+            id="adsterra-468x60-banner"
+            className="overflow-hidden rounded-xl"
+            style={{ minHeight: "60px" }}
+            aria-label="Adsterra 468x60 banner"
+          />
+          <div
+            id="ecpm-665391dd4f2164b4ccf56626f8253562"
+            className="overflow-hidden rounded-xl"
+            style={{ minHeight: "90px" }}
+            aria-label="Effective CPM network banner"
+          />
+          <div
+            id="adsterra-300x250-banner"
+            className="overflow-hidden rounded-xl"
+            style={{ minHeight: "250px" }}
+            aria-label="Adsterra 300x250 rectangle ad"
+          />
+          <div className="grid gap-3">
             <div
-              id="adsterra-728x90-banner"
+              id="adsterra-320x50-banner"
               className="overflow-hidden rounded-xl"
-              style={{ minHeight: "90px" }}
-              aria-label="Adsterra 728x90 leaderboard ad"
+              style={{ minHeight: "50px" }}
+              aria-label="Adsterra 320x50 mobile banner"
             />
-
-            <div className="grid gap-4 lg:grid-cols-[1fr,0.65fr]">
-              <div
-                id="adsterra-468x60-banner"
-                className="overflow-hidden rounded-xl"
-                style={{ minHeight: "60px" }}
-                aria-label="Adsterra 468x60 banner"
-              />
-              <div
-                id="ecpm-665391dd4f2164b4ccf56626f8253562"
-                className="overflow-hidden rounded-xl"
-                style={{ minHeight: "90px" }}
-                aria-label="Effective CPM network banner"
-              />
-            </div>
-          </div>
-
-          <div className="grid gap-4">
-            <div className="grid gap-4 lg:grid-cols-2">
-              <div
-                id="adsterra-320x50-banner"
-                className="overflow-hidden rounded-xl"
-                style={{ minHeight: "50px" }}
-                aria-label="Adsterra 320x50 mobile banner"
-              />
-              <div
-                id="adsterra-160x300-banner"
-                className="overflow-hidden rounded-xl"
-                style={{ minHeight: "300px" }}
-                aria-label="Adsterra 160x300 skyscraper"
-              />
-            </div>
-
-            <div className="grid gap-4 lg:grid-cols-2 items-stretch">
-              <div
-                id="adsterra-300x250-banner"
-                className="overflow-hidden rounded-xl"
-                style={{ minHeight: "250px" }}
-                aria-label="Adsterra 300x250 rectangle ad"
-              />
-              <div className="grid gap-4">
-                <div
-                  id="ecpm-popender"
-                  className="overflow-hidden rounded-xl"
-                  style={{ minHeight: "80px" }}
-                  aria-label="Effective CPM popender script"
-                />
-                <div
-                  id="ecpm-socialbar"
-                  className="overflow-hidden rounded-xl"
-                  style={{ minHeight: "80px" }}
-                  aria-label="Effective CPM social bar script"
-                />
-              </div>
-            </div>
+            <div
+              id="adsterra-160x300-banner"
+              className="overflow-hidden rounded-xl"
+              style={{ minHeight: "300px" }}
+              aria-label="Adsterra 160x300 skyscraper"
+            />
           </div>
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-[1fr,0.9fr] items-start">
-          <div className="overflow-hidden rounded-3xl border border-border bg-card p-5 shadow-card">
-            <div className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground mb-3">
-              Smart Link Placement
-            </div>
-            <h2 className="text-xl font-semibold text-secondary mb-3">
-              High-converting effective CPM smart link
-            </h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Click the button below to route traffic through the smart link. This link is placed here to maximize exposure alongside the top homepage ads.
-            </p>
-            <a
-              href={SMART_LINK_URL}
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              className="mt-5 inline-flex w-full items-center justify-center rounded-2xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition"
-            >
-              Open Smart Link Offer
-            </a>
-          </div>
-
-          <div className="overflow-hidden rounded-3xl border border-border bg-card p-5 shadow-card">
-            <div className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground mb-3">
-              Publisher Optimization
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              New banner scripts and the smart link are now loaded together in one compact top homepage panel to reduce wasted spacing and improve ad density.
-            </p>
-          </div>
+        <div className="grid gap-3 md:grid-cols-3">
+          <div
+            id="adsterra-160x600-banner"
+            className="overflow-hidden rounded-xl"
+            style={{ minHeight: "300px" }}
+            aria-label="Adsterra 160x600 wide skyscraper"
+          />
+          <div
+            id="ecpm-popender"
+            className="overflow-hidden rounded-xl"
+            style={{ minHeight: "80px" }}
+            aria-label="Effective CPM popender script"
+          />
+          <div
+            id="ecpm-socialbar"
+            className="overflow-hidden rounded-xl"
+            style={{ minHeight: "80px" }}
+            aria-label="Effective CPM social bar script"
+          />
         </div>
       </div>
     </section>
