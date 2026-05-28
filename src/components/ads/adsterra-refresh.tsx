@@ -187,75 +187,45 @@ export function AdsterraAutoRefreshBanners() {
   return (
     <section className="border-b border-border bg-soft/70" aria-label="Top site ads">
       <div className="container-px mx-auto max-w-7xl py-3 grid gap-3">
-        <div className="grid gap-3 xl:grid-cols-[160px,minmax(0,1fr),160px] items-start">
-          <aside className="hidden xl:grid gap-3 justify-items-center">
+        <div className="grid gap-3 justify-items-center">
+          <div
+            id="adsterra-728x90-banner"
+            className="overflow-hidden rounded-xl w-full max-w-[728px]"
+            style={{ minHeight: "90px" }}
+            aria-label="Adsterra 728x90 leaderboard ad"
+          />
+          <div
+            id="adsterra-468x60-banner"
+            className="overflow-hidden rounded-xl w-full max-w-[468px]"
+            style={{ minHeight: "60px" }}
+            aria-label="Adsterra 468x60 banner"
+          />
+          <div
+            id="adsterra-320x50-banner"
+            className="overflow-hidden rounded-xl w-full max-w-[320px]"
+            style={{ minHeight: "50px" }}
+            aria-label="Adsterra 320x50 mobile banner"
+          />
+          <div
+            id="adsterra-300x250-banner"
+            className="overflow-hidden rounded-xl w-full max-w-[300px]"
+            style={{ minHeight: "250px" }}
+            aria-label="Adsterra 300x250 rectangle ad"
+          />
+          <div className="grid gap-3 sm:grid-cols-2 justify-items-center w-full max-w-[360px]">
             <div
               id="adsterra-160x300-banner"
-              className="overflow-hidden rounded-xl"
-              style={{ minHeight: "300px", width: "160px" }}
+              className="overflow-hidden rounded-xl w-[160px]"
+              style={{ minHeight: "300px" }}
               aria-label="Adsterra 160x300 skyscraper"
             />
-          </aside>
-
-          <div className="grid gap-3 min-w-0">
-            <div
-              id="adsterra-728x90-banner"
-              className="overflow-hidden rounded-xl"
-              style={{ minHeight: "90px" }}
-              aria-label="Adsterra 728x90 leaderboard ad"
-            />
-            <div
-              id="ecpm-665391dd4f2164b4ccf56626f8253562"
-              className="overflow-hidden rounded-xl"
-              style={{ minHeight: "90px" }}
-              aria-label="Effective CPM network banner"
-            />
-            <div className="grid gap-3 lg:grid-cols-[1fr,320px] items-start">
-              <div
-                id="adsterra-468x60-banner"
-                className="overflow-hidden rounded-xl"
-                style={{ minHeight: "60px" }}
-                aria-label="Adsterra 468x60 banner"
-              />
-              <div
-                id="adsterra-320x50-banner"
-                className="overflow-hidden rounded-xl"
-                style={{ minHeight: "50px", width: "320px", maxWidth: "100%" }}
-                aria-label="Adsterra 320x50 mobile banner"
-              />
-            </div>
-
-            <div
-              id="adsterra-300x250-banner"
-              className="overflow-hidden rounded-xl"
-              style={{ minHeight: "250px" }}
-              aria-label="Adsterra 300x250 rectangle ad"
-            />
-          </div>
-
-          <aside className="hidden xl:grid gap-3 justify-items-center">
             <div
               id="adsterra-160x600-banner"
-              className="overflow-hidden rounded-xl"
-              style={{ minHeight: "600px", width: "160px" }}
+              className="overflow-hidden rounded-xl w-[160px]"
+              style={{ minHeight: "600px" }}
               aria-label="Adsterra 160x600 wide skyscraper"
             />
-          </aside>
-        </div>
-
-        <div className="grid gap-3 md:grid-cols-2">
-          <div
-            id="ecpm-popender"
-            className="overflow-hidden rounded-xl"
-            style={{ minHeight: "80px" }}
-            aria-label="Effective CPM popender script"
-          />
-          <div
-            id="ecpm-socialbar"
-            className="overflow-hidden rounded-xl"
-            style={{ minHeight: "80px" }}
-            aria-label="Effective CPM social bar script"
-          />
+          </div>
         </div>
       </div>
     </section>
