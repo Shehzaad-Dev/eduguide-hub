@@ -14,6 +14,7 @@ type AdConfig = {
 };
 
 const REFRESH_INTERVAL_MS = 30_000;
+const ADSTERRA_INJECTION_STAGGER_MS = 250;
 
 const adConfigs: AdConfig[] = [
   {
@@ -149,37 +150,37 @@ function injectEffectiveCpm(container: HTMLElement, config: AdConfig) {
   container.append(slot, invokeScript);
 }
 
-function createSlotManager(config: AdConfig) {
+function loadConfig(config: AdConfig) {
   const container = document.getElementById(config.id);
-  if (!container) return null;
+  if (!container) return;
 
-  const loadSlot = () => {
-    if (config.provider === "adsterra") {
-      injectAdsterra(container, config);
-    } else {
-      injectEffectiveCpm(container, config);
-    }
-  };
+  if (config.provider === "adsterra") {
+    injectAdsterra(container, config);
+  } else {
+    injectEffectiveCpm(container, config);
+  }
+}
 
-  // Immediate first load + strict 30s refresh cycle.
-  loadSlot();
-  const intervalId = window.setInterval(loadSlot, REFRESH_INTERVAL_MS);
+function loadAllSlots() {
+  // Adsterra relies on a shared global `window.atOptions`; stagger execution
+  // to prevent placement collisions when multiple slots load together.
+  const adsterraConfigs = adConfigs.filter((config) => config.provider === "adsterra");
+  const effectiveCpmConfigs = adConfigs.filter((config) => config.provider === "effectivecpm");
 
-  return {
-    clear: () => {
-      window.clearInterval(intervalId);
-    },
-  };
+  effectiveCpmConfigs.forEach((config) => loadConfig(config));
+  adsterraConfigs.forEach((config, index) => {
+    window.setTimeout(() => loadConfig(config), index * ADSTERRA_INJECTION_STAGGER_MS);
+  });
 }
 
 export function AdsterraAutoRefreshBanners() {
   useEffect(() => {
-    const managers = adConfigs
-      .map((config) => createSlotManager(config))
-      .filter((manager): manager is { clear: () => void } => Boolean(manager));
+    // Immediate first load + strict 30s refresh cycle.
+    loadAllSlots();
+    const intervalId = window.setInterval(loadAllSlots, REFRESH_INTERVAL_MS);
 
     return () => {
-      managers.forEach((manager) => manager.clear());
+      window.clearInterval(intervalId);
     };
   }, []);
 
