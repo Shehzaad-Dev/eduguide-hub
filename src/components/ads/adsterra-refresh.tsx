@@ -14,8 +14,6 @@ type AdConfig = {
 };
 
 const REFRESH_INTERVAL_MS = 30_000;
-const MAX_SEQUENTIAL_REFRESHES = 6;
-const ENGAGEMENT_EVENTS = ["mousemove", "scroll", "touchstart"] as const;
 
 const adConfigs: AdConfig[] = [
   {
@@ -151,119 +149,36 @@ function injectEffectiveCpm(container: HTMLElement, config: AdConfig) {
   container.append(slot, invokeScript);
 }
 
-function createSlotManager(config: AdConfig, globalState: { pageVisible: boolean; sequentialRefreshes: number; engaged: boolean }) {
+function createSlotManager(config: AdConfig) {
   const container = document.getElementById(config.id);
   if (!container) return null;
 
-  let timerId: number | null = null;
-  let slotVisible = false;
-  let hasLoaded = false;
-
-  const clearTimer = () => {
-    if (timerId !== null) {
-      window.clearTimeout(timerId);
-      timerId = null;
-    }
-  };
-
-  const canAutoRefresh = () =>
-    slotVisible && globalState.pageVisible && globalState.sequentialRefreshes < MAX_SEQUENTIAL_REFRESHES;
-
   const loadSlot = () => {
-    if (!canAutoRefresh()) return;
-
     if (config.provider === "adsterra") {
       injectAdsterra(container, config);
     } else {
       injectEffectiveCpm(container, config);
     }
-
-    globalState.sequentialRefreshes += 1;
-    hasLoaded = true;
   };
 
-  const scheduleNextRefresh = () => {
-    clearTimer();
-    if (!canAutoRefresh()) return;
+  // Immediate first load + strict 30s refresh cycle.
+  loadSlot();
+  const intervalId = window.setInterval(loadSlot, REFRESH_INTERVAL_MS);
 
-    timerId = window.setTimeout(() => {
-      timerId = null;
-      if (!canAutoRefresh()) return;
-      loadSlot();
-      scheduleNextRefresh();
-    }, REFRESH_INTERVAL_MS);
-  };
-
-  const updateRefreshState = () => {
-    if (!canAutoRefresh()) {
-      clearTimer();
-      return;
-    }
-
-    if (!hasLoaded) {
-      loadSlot();
-    }
-
-    if (timerId === null) {
-      scheduleNextRefresh();
-    }
-  };
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const entry = entries.find((item) => item.target === container);
-      if (!entry) return;
-      slotVisible = entry.intersectionRatio >= 0.5;
-      updateRefreshState();
-    },
-    { threshold: [0.5] },
-  );
-
-  observer.observe(container);
   return {
-    updateRefreshState,
     clear: () => {
-      clearTimer();
-      observer.disconnect();
+      window.clearInterval(intervalId);
     },
   };
 }
 
 export function AdsterraAutoRefreshBanners() {
   useEffect(() => {
-    const globalState = {
-      pageVisible: !document.hidden,
-      sequentialRefreshes: 0,
-      engaged: false,
-    };
-
     const managers = adConfigs
-      .map((config) => createSlotManager(config, globalState))
-      .filter((manager): manager is { updateRefreshState: () => void; clear: () => void } => Boolean(manager));
-
-    const handleVisibilityChange = () => {
-      globalState.pageVisible = !document.hidden;
-      managers.forEach((manager) => manager.updateRefreshState());
-    };
-
-    const handleEngagement = () => {
-      globalState.engaged = true;
-      globalState.sequentialRefreshes = 0;
-      managers.forEach((manager) => manager.updateRefreshState());
-    };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    ENGAGEMENT_EVENTS.forEach((eventName) => {
-      document.addEventListener(eventName, handleEngagement, { passive: true });
-    });
-
-    managers.forEach((manager) => manager.updateRefreshState());
+      .map((config) => createSlotManager(config))
+      .filter((manager): manager is { clear: () => void } => Boolean(manager));
 
     return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-      ENGAGEMENT_EVENTS.forEach((eventName) => {
-        document.removeEventListener(eventName, handleEngagement);
-      });
       managers.forEach((manager) => manager.clear());
     };
   }, []);
@@ -317,7 +232,7 @@ export function AdsterraAutoRefreshBanners() {
           <div
             id="adsterra-160x600-banner"
             className="overflow-hidden rounded-xl"
-            style={{ minHeight: "300px" }}
+            style={{ minHeight: "600px" }}
             aria-label="Adsterra 160x600 wide skyscraper"
           />
           <div
