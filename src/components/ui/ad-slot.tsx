@@ -15,6 +15,8 @@ type AdSlotProps = {
   /** Load as soon as consent is granted (for above-the-fold slots). */
   eager?: boolean;
   onLoad?: () => void;
+  /** Collapse the slot when ad content does not render. */
+  collapseIfEmpty?: boolean;
 };
 
 export function AdSlot({
@@ -26,9 +28,11 @@ export function AdSlot({
   adHtml: adHtmlOverride,
   eager = false,
   onLoad,
+  collapseIfEmpty = false,
 }: AdSlotProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [inView, setInView] = useState(eager);
+  const [hasRenderedAd, setHasRenderedAd] = useState(false);
   const consent = useAdsConsent();
 
   const zoneHtml = placement ? getZoneHtml(placement) : undefined;
@@ -85,6 +89,7 @@ export function AdSlot({
         if (oldScript.textContent) script.textContent = oldScript.textContent;
         oldScript.replaceWith(script);
       });
+      setHasRenderedAd(true);
       onLoad?.();
       return;
     }
@@ -96,14 +101,53 @@ export function AdSlot({
       zone.className = "flex h-full min-h-[inherit] w-full items-center justify-center";
       zone.setAttribute("aria-hidden", "true");
       host.appendChild(zone);
+      setHasRenderedAd(true);
       onLoad?.();
+      return;
     }
+
+    setHasRenderedAd(false);
   }, [inView, consent, adHtml, placement, configured, id, onLoad]);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    if (!collapseIfEmpty) return;
+    if (consent !== "granted") return;
+
+    const host = ref.current;
+    const hasVisibleAdMarkup = () =>
+      Boolean(host.querySelector("iframe, img, ins, object, embed, [data-revbid-placement]"));
+
+    const checkVisibility = () => {
+      setHasRenderedAd(hasVisibleAdMarkup());
+    };
+
+    checkVisibility();
+    const observer = new MutationObserver(checkVisibility);
+    observer.observe(host, { childList: true, subtree: true });
+    const timeout = window.setTimeout(checkVisibility, 4000);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(timeout);
+    };
+  }, [collapseIfEmpty, consent, inView, adHtml, placement]);
 
   const style: React.CSSProperties = {
     width: typeof width === "number" ? `${width}px` : width,
-    height: typeof height === "number" ? `${height}px` : height,
-    minHeight: typeof height === "number" ? `${height}px` : undefined,
+    height:
+      collapseIfEmpty && inView && consent === "granted" && !hasRenderedAd
+        ? "0px"
+        : typeof height === "number"
+          ? `${height}px`
+          : height,
+    minHeight:
+      collapseIfEmpty && inView && consent === "granted" && !hasRenderedAd
+        ? "0px"
+        : typeof height === "number"
+          ? `${height}px`
+          : undefined,
+    overflow: collapseIfEmpty ? "hidden" : undefined,
   };
 
   const showPlaceholder = inView && consent === "granted" && !adHtml && !configured;

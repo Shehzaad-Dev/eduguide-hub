@@ -14,7 +14,6 @@ import {
 import type { ComponentType, ReactNode } from "react";
 import { PageShell } from "@/components/site/PageShell";
 import AdSlot from "@/components/ui/ad-slot";
-import { AdsterraAutoRefreshBanners } from "@/components/ads/adsterra-refresh";
 import { LazyImage } from "@/components/ui/lazy-image";
 import { SCHOLARSHIPS, UNIVERSITIES, PLATFORMS, CAREERS, TESTIMONIALS } from "@/data/site";
 import { ARTICLES } from "@/data/articles";
@@ -46,8 +45,6 @@ function Home() {
 
   return (
     <PageShell>
-      <AdsterraAutoRefreshBanners />
-
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
@@ -137,9 +134,10 @@ function Home() {
           <AdSlot
             id="homepage-mid-ad"
             placement="mid"
+            collapseIfEmpty
             className="mx-auto rounded-3xl overflow-hidden border border-border bg-card shadow-card"
             width="100%"
-            height={150}
+            height={120}
           />
         </div>
       </section>
@@ -399,9 +397,10 @@ function Home() {
           <AdSlot
             id="homepage-bottom-ad"
             placement="bottom"
+            collapseIfEmpty
             className="mx-auto rounded-3xl overflow-hidden border border-border bg-card shadow-card"
             width="100%"
-            height={170}
+            height={120}
           />
         </div>
       </section>

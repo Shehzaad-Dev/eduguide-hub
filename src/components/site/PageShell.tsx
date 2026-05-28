@@ -4,6 +4,7 @@ import ConsentBanner from "../ui/consent-banner";
 import { PageStepper } from "./PageStepper";
 import { SiteTopAd } from "@/components/ads/site-top-ad";
 import { RevBidHead } from "@/components/ads/revbid-head";
+import AdSlot from "@/components/ui/ad-slot";
 
 export function PageShell({ children }: { children: React.ReactNode }) {
   return (
@@ -12,6 +13,19 @@ export function PageShell({ children }: { children: React.ReactNode }) {
       <Navbar />
       <SiteTopAd />
       <main className="flex-1">{children}</main>
+      <section className="border-t border-border bg-soft/40 py-6">
+        <div className="container-px mx-auto max-w-7xl">
+          <AdSlot
+            id="global-pre-footer-ad"
+            placement="bottom"
+            eager
+            collapseIfEmpty
+            className="mx-auto overflow-hidden rounded-2xl border border-border bg-card shadow-card"
+            width="100%"
+            height={120}
+          />
+        </div>
+      </section>
       <PageStepper />
       <Footer />
       <ConsentBanner />
