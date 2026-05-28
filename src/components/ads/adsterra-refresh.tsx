@@ -186,17 +186,17 @@ export function AdsterraAutoRefreshBanners() {
   return (
     <section className="border-b border-border bg-soft/70" aria-label="Top site ads">
       <div className="container-px mx-auto max-w-7xl py-3 grid gap-3">
-        <div className="grid gap-3 xl:grid-cols-[180px,1fr,180px] items-start">
-          <aside className="grid gap-3 justify-items-center">
+        <div className="grid gap-3 xl:grid-cols-[160px,minmax(0,1fr),160px] items-start">
+          <aside className="hidden xl:grid gap-3 justify-items-center">
             <div
-              id="adsterra-160x600-banner"
+              id="adsterra-160x300-banner"
               className="overflow-hidden rounded-xl"
-              style={{ minHeight: "600px", width: "160px" }}
-              aria-label="Adsterra 160x600 wide skyscraper"
+              style={{ minHeight: "300px", width: "160px" }}
+              aria-label="Adsterra 160x300 skyscraper"
             />
           </aside>
 
-          <div className="grid gap-3">
+          <div className="grid gap-3 min-w-0">
             <div
               id="adsterra-728x90-banner"
               className="overflow-hidden rounded-xl"
@@ -217,26 +217,35 @@ export function AdsterraAutoRefreshBanners() {
                 aria-label="Adsterra 468x60 banner"
               />
               <div
+                id="adsterra-320x50-banner"
+                className="overflow-hidden rounded-xl"
+                style={{ minHeight: "50px", width: "320px", maxWidth: "100%" }}
+                aria-label="Adsterra 320x50 mobile banner"
+              />
+            </div>
+
+            <div className="grid gap-3 md:grid-cols-2">
+              <div
                 id="adsterra-300x250-banner"
                 className="overflow-hidden rounded-xl"
-                style={{ minHeight: "250px", width: "300px" }}
+                style={{ minHeight: "250px" }}
                 aria-label="Adsterra 300x250 rectangle ad"
+              />
+              <div
+                id="ecpm-665391dd4f2164b4ccf56626f8253562"
+                className="overflow-hidden rounded-xl"
+                style={{ minHeight: "90px" }}
+                aria-label="Effective CPM network banner"
               />
             </div>
           </div>
 
-          <aside className="grid gap-3 justify-items-center">
+          <aside className="hidden xl:grid gap-3 justify-items-center">
             <div
-              id="adsterra-160x300-banner"
+              id="adsterra-160x600-banner"
               className="overflow-hidden rounded-xl"
-              style={{ minHeight: "300px", width: "160px" }}
-              aria-label="Adsterra 160x300 skyscraper"
-            />
-            <div
-              id="adsterra-320x50-banner"
-              className="overflow-hidden rounded-xl"
-              style={{ minHeight: "50px", width: "320px", maxWidth: "100%" }}
-              aria-label="Adsterra 320x50 mobile banner"
+              style={{ minHeight: "600px", width: "160px" }}
+              aria-label="Adsterra 160x600 wide skyscraper"
             />
           </aside>
         </div>
