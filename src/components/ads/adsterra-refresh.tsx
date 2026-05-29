@@ -185,46 +185,64 @@ export function AdsterraAutoRefreshBanners() {
   }, []);
 
   return (
-    <section className="border-b border-border bg-soft/70" aria-label="Top site ads">
-      <div className="container-px mx-auto max-w-7xl py-3 grid gap-3">
-        <div className="grid gap-3 justify-items-center">
-          <div
-            id="adsterra-728x90-banner"
-            className="overflow-hidden rounded-xl w-full max-w-[728px]"
-            style={{ minHeight: "90px" }}
-            aria-label="Adsterra 728x90 leaderboard ad"
-          />
-          <div
-            id="adsterra-468x60-banner"
-            className="overflow-hidden rounded-xl w-full max-w-[468px]"
-            style={{ minHeight: "60px" }}
-            aria-label="Adsterra 468x60 banner"
-          />
-          <div
-            id="adsterra-320x50-banner"
-            className="overflow-hidden rounded-xl w-full max-w-[320px]"
-            style={{ minHeight: "50px" }}
-            aria-label="Adsterra 320x50 mobile banner"
-          />
-          <div
-            id="adsterra-300x250-banner"
-            className="overflow-hidden rounded-xl w-full max-w-[300px]"
-            style={{ minHeight: "250px" }}
-            aria-label="Adsterra 300x250 rectangle ad"
-          />
-          <div className="grid gap-3 sm:grid-cols-2 justify-items-center w-full max-w-[360px]">
+    <section className="border-b border-border bg-soft/90" aria-label="Top site ads">
+      <div className="container-px mx-auto max-w-7xl py-4 grid gap-4">
+        <div className="grid gap-4 justify-items-center">
+          <div className="overflow-hidden rounded-xl w-full max-w-[728px] bg-muted/10 border border-border">
             <div
-              id="adsterra-160x300-banner"
-              className="overflow-hidden rounded-xl w-[160px]"
-              style={{ minHeight: "300px" }}
-              aria-label="Adsterra 160x300 skyscraper"
+              id="adsterra-728x90-banner"
+              className="w-full"
+              style={{ minHeight: "90px" }}
+              aria-label="Adsterra 728x90 leaderboard ad"
             />
-            <div
-              id="adsterra-160x600-banner"
-              className="overflow-hidden rounded-xl w-[160px]"
-              style={{ minHeight: "600px" }}
-              aria-label="Adsterra 160x600 wide skyscraper"
-            />
+          </div>
+
+          <div className="grid w-full gap-4 lg:grid-cols-[minmax(0,1fr),auto]">
+            <div className="overflow-hidden rounded-xl bg-muted/10 border border-border">
+              <div
+                id="adsterra-300x250-banner"
+                className="w-full"
+                style={{ minHeight: "250px" }}
+                aria-label="Adsterra 300x250 rectangle ad"
+              />
+            </div>
+            <div className="grid gap-4">
+              <div className="overflow-hidden rounded-xl bg-muted/10 border border-border">
+                <div
+                  id="adsterra-468x60-banner"
+                  className="w-full"
+                  style={{ minHeight: "60px" }}
+                  aria-label="Adsterra 468x60 banner"
+                />
+              </div>
+              <div className="overflow-hidden rounded-xl bg-muted/10 border border-border">
+                <div
+                  id="adsterra-320x50-banner"
+                  className="w-full"
+                  style={{ minHeight: "50px" }}
+                  aria-label="Adsterra 320x50 mobile banner"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 justify-items-center w-full">
+            <div className="overflow-hidden rounded-xl bg-muted/10 border border-border">
+              <div
+                id="adsterra-160x300-banner"
+                className="w-[160px]"
+                style={{ minHeight: "300px" }}
+                aria-label="Adsterra 160x300 skyscraper"
+              />
+            </div>
+            <div className="overflow-hidden rounded-xl bg-muted/10 border border-border">
+              <div
+                id="adsterra-160x600-banner"
+                className="w-[160px]"
+                style={{ minHeight: "600px" }}
+                aria-label="Adsterra 160x600 wide skyscraper"
+              />
+            </div>
           </div>
         </div>
       </div>
