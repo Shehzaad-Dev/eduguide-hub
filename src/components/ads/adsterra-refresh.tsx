@@ -14,7 +14,6 @@ type AdConfig = {
 };
 
 const REFRESH_INTERVAL_MS = 40_000;
-const ADSTERRA_INJECTION_STAGGER_MS = 250;
 
 const adConfigs: AdConfig[] = [
   {
@@ -119,19 +118,24 @@ function buildAtOptionsScript(config: AdConfig) {
 };`;
 }
 
-function injectAdsterra(container: HTMLElement, config: AdConfig) {
-  container.replaceChildren();
+function injectAdsterra(container: HTMLElement, config: AdConfig): Promise<void> {
+  return new Promise((resolve) => {
+    container.replaceChildren();
 
-  const optionsScript = document.createElement("script");
-  optionsScript.type = "text/javascript";
-  optionsScript.text = buildAtOptionsScript(config);
+    const optionsScript = document.createElement("script");
+    optionsScript.type = "text/javascript";
+    optionsScript.text = buildAtOptionsScript(config);
 
-  const invokeScript = document.createElement("script");
-  invokeScript.src = config.invokeUrl;
-  invokeScript.async = false;
-  invokeScript.setAttribute("data-cfasync", "false");
+    const invokeScript = document.createElement("script");
+    invokeScript.type = "text/javascript";
+    invokeScript.src = config.invokeUrl;
+    invokeScript.async = false;
+    invokeScript.setAttribute("data-cfasync", "false");
+    invokeScript.onload = () => resolve();
+    invokeScript.onerror = () => resolve();
 
-  container.append(optionsScript, invokeScript);
+    container.append(optionsScript, invokeScript);
+  });
 }
 
 function injectEffectiveCpm(container: HTMLElement, config: AdConfig) {
@@ -150,27 +154,27 @@ function injectEffectiveCpm(container: HTMLElement, config: AdConfig) {
   container.append(slot, invokeScript);
 }
 
-function loadConfig(config: AdConfig) {
+function loadConfig(config: AdConfig): Promise<void> {
   const container = document.getElementById(config.id);
-  if (!container) return;
+  if (!container) return Promise.resolve();
 
   if (config.provider === "adsterra") {
-    injectAdsterra(container, config);
-  } else {
-    injectEffectiveCpm(container, config);
+    return injectAdsterra(container, config);
   }
+
+  injectEffectiveCpm(container, config);
+  return Promise.resolve();
 }
 
-function loadAllSlots() {
-  // Adsterra relies on a shared global `window.atOptions`; stagger execution
-  // to prevent placement collisions when multiple slots load together.
+async function loadAllSlots() {
   const adsterraConfigs = adConfigs.filter((config) => config.provider === "adsterra");
   const effectiveCpmConfigs = adConfigs.filter((config) => config.provider === "effectivecpm");
 
   effectiveCpmConfigs.forEach((config) => loadConfig(config));
-  adsterraConfigs.forEach((config, index) => {
-    window.setTimeout(() => loadConfig(config), index * ADSTERRA_INJECTION_STAGGER_MS);
-  });
+
+  for (const config of adsterraConfigs) {
+    await loadConfig(config);
+  }
 }
 
 export function AdsterraAutoRefreshBanners() {
