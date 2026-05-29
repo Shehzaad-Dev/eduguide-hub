@@ -28,11 +28,7 @@ export default defineConfig(({ command }) => {
         enableRouteGeneration: false,
       }),
       // Vercel: Nitro emits .vercel/output so "/" SSR works. Local/CI without VERCEL uses Cloudflare.
-      ...(isServe
-        ? []
-        : process.env.VERCEL
-          ? [nitro({ preset: "vercel" })]
-          : [cloudflare()]),
+      ...(isServe ? [] : process.env.VERCEL ? [nitro({ preset: "vercel" })] : [cloudflare()]),
       react(),
       tailwindcss(),
       tsconfigPaths(),

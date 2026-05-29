@@ -32,7 +32,8 @@ export function ConsentBanner() {
         <div className="text-sm md:text-base leading-relaxed">
           <p className="font-semibold text-secondary">Cookie & Ad Consent</p>
           <p className="mt-2 text-muted-foreground">
-            We use cookies and ad technologies to personalize content and keep this website free. Please choose your preference.
+            We use cookies and ad technologies to personalize content and keep this website free.
+            Please choose your preference.
           </p>
           <p className="mt-2 text-muted-foreground">
             Read our{" "}

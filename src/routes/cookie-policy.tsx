@@ -10,7 +10,8 @@ export const Route = createFileRoute("/cookie-policy")({
       { title: "Cookie Policy — EduGuide" },
       {
         name: "description",
-        content: "Our cookie policy explains how EduGuide uses cookies to enhance your browsing experience.",
+        content:
+          "Our cookie policy explains how EduGuide uses cookies to enhance your browsing experience.",
       },
       { property: "og:title", content: "Cookie Policy — EduGuide" },
       { property: "og:url", content: "/cookie-policy" },
@@ -32,8 +33,9 @@ function CookiePolicy() {
           <div className="prose prose-invert max-w-none">
             <h2>What Are Cookies?</h2>
             <p>
-              Cookies are small text files stored on your device when you visit our website. They help us
-              remember your preferences, analyze how you use EduGuide, and serve relevant advertisements.
+              Cookies are small text files stored on your device when you visit our website. They
+              help us remember your preferences, analyze how you use EduGuide, and serve relevant
+              advertisements.
             </p>
 
             <h2>Types of Cookies We Use</h2>
@@ -41,8 +43,8 @@ function CookiePolicy() {
             <h3>1. Essential Cookies</h3>
             <p>
               These cookies are necessary for the website to function properly. They enable core
-              functionality like page navigation and access to secure areas. Without these cookies, the
-              website cannot operate effectively.
+              functionality like page navigation and access to secure areas. Without these cookies,
+              the website cannot operate effectively.
             </p>
             <ul>
               <li>Session cookies for user authentication</li>
@@ -52,8 +54,8 @@ function CookiePolicy() {
 
             <h3>2. Performance Cookies</h3>
             <p>
-              We use performance cookies to understand how visitors interact with our website. This helps
-              us optimize content and improve user experience.
+              We use performance cookies to understand how visitors interact with our website. This
+              helps us optimize content and improve user experience.
             </p>
             <ul>
               <li>Analytics cookies to track page views and user behavior</li>
@@ -77,21 +79,22 @@ function CookiePolicy() {
 
             <h3>RevBid</h3>
             <p>
-              RevBid is our primary header-bidding partner. They use cookies to auction ad placements and
-              deliver relevant advertisements. Their cookies help ensure you see ads that match your interests
-              while helping us maintain quality content.
+              RevBid is our primary header-bidding partner. They use cookies to auction ad
+              placements and deliver relevant advertisements. Their cookies help ensure you see ads
+              that match your interests while helping us maintain quality content.
             </p>
 
             <h3>Adsterra</h3>
             <p>
-              Adsterra provides display banner ads across our site with automatic refresh features. Their
-              cookies track impression data, prevent bot activity, and ensure safe monetization practices.
+              Adsterra provides display banner ads across our site with automatic refresh features.
+              Their cookies track impression data, prevent bot activity, and ensure safe
+              monetization practices.
             </p>
 
             <h3>Effective CPM Network</h3>
             <p>
-              We also partner with Effective CPM Network for additional ad inventory. Like all ad networks,
-              they use cookies for ad delivery and performance tracking.
+              We also partner with Effective CPM Network for additional ad inventory. Like all ad
+              networks, they use cookies for ad delivery and performance tracking.
             </p>
 
             <h2>Your Cookie Consent</h2>
@@ -124,13 +127,14 @@ function CookiePolicy() {
             </ul>
 
             <p className="text-sm text-muted-foreground">
-              <strong>Note:</strong> Disabling cookies may affect website functionality and ad delivery.
+              <strong>Note:</strong> Disabling cookies may affect website functionality and ad
+              delivery.
             </p>
 
             <h2>Third-Party Links</h2>
             <p>
-              EduGuide contains links to external sites. We are not responsible for their cookie practices.
-              Please review their privacy policies and cookie notices separately.
+              EduGuide contains links to external sites. We are not responsible for their cookie
+              practices. Please review their privacy policies and cookie notices separately.
             </p>
 
             <h2>Contact Us</h2>
@@ -146,9 +150,7 @@ function CookiePolicy() {
               .
             </p>
 
-            <p className="text-xs text-muted-foreground mt-8">
-              Last updated: May 27, 2026
-            </p>
+            <p className="text-xs text-muted-foreground mt-8">Last updated: May 27, 2026</p>
           </div>
         </div>
       </section>
