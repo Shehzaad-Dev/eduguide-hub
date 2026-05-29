@@ -13,7 +13,7 @@ type AdConfig = {
   containerId?: string;
 };
 
-const REFRESH_INTERVAL_MS = 30_000;
+const REFRESH_INTERVAL_MS = 40_000;
 const ADSTERRA_INJECTION_STAGGER_MS = 250;
 
 const adConfigs: AdConfig[] = [
@@ -175,7 +175,7 @@ function loadAllSlots() {
 
 export function AdsterraAutoRefreshBanners() {
   useEffect(() => {
-    // Immediate first load + strict 30s refresh cycle.
+    // Immediate first load + strict 40s refresh cycle.
     loadAllSlots();
     const intervalId = window.setInterval(loadAllSlots, REFRESH_INTERVAL_MS);
 
