@@ -158,13 +158,8 @@ export function AdSlot({
         <div className="h-full w-full animate-pulse rounded-inherit bg-muted" aria-hidden />
       )}
 
-      {inView && consent === "denied" && (
-        <div className="h-full w-full" aria-hidden />
-      )}
-
-      {showPlaceholder && (
-        <div className="h-full w-full" aria-hidden />
-      )}
+      {inView && consent === "denied" && <div className="h-full w-full" aria-hidden />}
+      {showPlaceholder && <div className="h-full w-full" aria-hidden />}
     </div>
   );
 }

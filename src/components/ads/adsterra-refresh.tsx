@@ -23,8 +23,7 @@ const adConfigs: AdConfig[] = [
     height: 90,
     provider: "adsterra",
     key: "8a23a3293f12f7d8df1b0ddfd780070d",
-    invokeUrl:
-      "https://www.highperformanceformat.com/8a23a3293f12f7d8df1b0ddfd780070d/invoke.js",
+    invokeUrl: "https://www.highperformanceformat.com/8a23a3293f12f7d8df1b0ddfd780070d/invoke.js",
   },
   {
     id: "adsterra-300x250-banner",
@@ -33,8 +32,7 @@ const adConfigs: AdConfig[] = [
     height: 250,
     provider: "adsterra",
     key: "16ea2b2254d9d0a54edaf811908d57fa",
-    invokeUrl:
-      "https://www.highperformanceformat.com/16ea2b2254d9d0a54edaf811908d57fa/invoke.js",
+    invokeUrl: "https://www.highperformanceformat.com/16ea2b2254d9d0a54edaf811908d57fa/invoke.js",
   },
   {
     id: "adsterra-468x60-banner",
@@ -43,8 +41,7 @@ const adConfigs: AdConfig[] = [
     height: 60,
     provider: "adsterra",
     key: "b221422c5d6f7471a7347865ff26cc0d",
-    invokeUrl:
-      "https://www.highperformanceformat.com/b221422c5d6f7471a7347865ff26cc0d/invoke.js",
+    invokeUrl: "https://www.highperformanceformat.com/b221422c5d6f7471a7347865ff26cc0d/invoke.js",
   },
   {
     id: "adsterra-160x300-banner",
@@ -53,8 +50,7 @@ const adConfigs: AdConfig[] = [
     height: 300,
     provider: "adsterra",
     key: "cc9a5ce72aede7b3212d37529a6e12a7",
-    invokeUrl:
-      "https://www.highperformanceformat.com/cc9a5ce72aede7b3212d37529a6e12a7/invoke.js",
+    invokeUrl: "https://www.highperformanceformat.com/cc9a5ce72aede7b3212d37529a6e12a7/invoke.js",
   },
   {
     id: "adsterra-320x50-banner",
@@ -63,8 +59,7 @@ const adConfigs: AdConfig[] = [
     height: 50,
     provider: "adsterra",
     key: "6a3d74765ba7b3ca957314a241ef3aa1",
-    invokeUrl:
-      "https://www.highperformanceformat.com/6a3d74765ba7b3ca957314a241ef3aa1/invoke.js",
+    invokeUrl: "https://www.highperformanceformat.com/6a3d74765ba7b3ca957314a241ef3aa1/invoke.js",
   },
   {
     id: "adsterra-160x600-banner",
@@ -73,8 +68,7 @@ const adConfigs: AdConfig[] = [
     height: 600,
     provider: "adsterra",
     key: "2c048d071be4697b86112ff8581145da",
-    invokeUrl:
-      "https://www.highperformanceformat.com/2c048d071be4697b86112ff8581145da/invoke.js",
+    invokeUrl: "https://www.highperformanceformat.com/2c048d071be4697b86112ff8581145da/invoke.js",
   },
   {
     id: "ecpm-665391dd4f2164b4ccf56626f8253562",
