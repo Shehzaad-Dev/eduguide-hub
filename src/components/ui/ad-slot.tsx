@@ -98,7 +98,7 @@ export function AdSlot({
     }
 
     setHasRenderedAd(false);
-  }, [inView, consent, adHtml, id, onLoad]);
+  }, [inView, consent, id, onLoad]);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -122,7 +122,7 @@ export function AdSlot({
       observer.disconnect();
       window.clearTimeout(timeout);
     };
-  }, [collapseIfEmpty, consent, inView, adHtml, placement]);
+  }, [collapseIfEmpty, consent, inView, placement]);
 
   const style: React.CSSProperties = {
     width: typeof width === "number" ? `${width}px` : width,
