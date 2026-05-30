@@ -15,15 +15,17 @@ Affordable domain registrars:
 - **Cloudflare Registrar** — very transparent pricing and easy DNS management.
 - **Google Domains** — simple UI and reasonable pricing.
 
-Ad management notes (RevBid — fast publisher approval):
+Ad management notes (Adsterra — use raw Adsterra zone snippets):
 
-1. Sign up at https://revbid.net/register → **Create Account In Publisher**.
-2. Add your live domain, verify with **Head Tag** (paste into `VITE_REVBID_HEAD_HTML` in `.env.local`).
-3. After approval (~24–48h), copy your **script URL** and **zone HTML** into `.env.local` (see `.env.example`).
-4. On Cloudflare Pages / Vercel, add the same variables under **Environment variables** and redeploy.
-5. Upload `public/ads.txt` lines from the RevBid dashboard when provided.
+1. Sign up at https://adsterra.com/publishers and get your Adsterra publisher ad unit snippets.
+2. Copy each placement's full HTML snippet into your local environment file:
+   - `VITE_ADSTERRA_ZONE_TOP_HTML`
+   - `VITE_ADSTERRA_ZONE_MID_HTML`
+   - `VITE_ADSTERRA_ZONE_BOTTOM_HTML`
+3. On Cloudflare Pages / Vercel, add the same variables under **Environment variables** and redeploy.
+4. Add any required Adsterra `ads.txt` entries to `public/ads.txt` if Adsterra provides them.
 
-Ads lazy-load: script and zones load only after consent and when slots enter the viewport (top slot loads immediately after consent).
+Ads lazy-load: Adsterra snippets only inject after user consent and once the slot enters the viewport.
 
 ## Local dev (Windows)
 

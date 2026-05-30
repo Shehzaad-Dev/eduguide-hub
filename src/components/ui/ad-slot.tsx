@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import DOMPurify from "dompurify";
 import { type AdPlacement, getZoneHtml, hasAdProviderConfigured } from "@/lib/ads-config";
-import { loadAdProviderScript } from "@/lib/load-ad-provider";
 import { useAdsConsent } from "@/lib/use-ads-consent";
 
 type AdSlotProps = {
@@ -9,7 +8,7 @@ type AdSlotProps = {
   className?: string;
   width?: number | string;
   height?: number | string;
-  /** RevBid zone HTML from env, or override with custom snippet. */
+  /** Adsterra zone HTML from env, or override with custom snippet. */
   placement?: AdPlacement;
   adHtml?: string;
   /** Load as soon as consent is granted (for above-the-fold slots). */
@@ -64,12 +63,6 @@ export function AdSlot({
   useEffect(() => {
     if (!inView) return;
     if (consent !== "granted") return;
-    loadAdProviderScript();
-  }, [inView, consent]);
-
-  useEffect(() => {
-    if (!inView) return;
-    if (consent !== "granted") return;
     if (!ref.current) return;
 
     const host = ref.current;
@@ -78,7 +71,18 @@ export function AdSlot({
     if (adHtml) {
       const cleanHtml = DOMPurify.sanitize(adHtml, {
         ADD_TAGS: ["script", "ins", "iframe", "div"],
-        ADD_ATTR: ["async", "defer", "src", "data-zone", "data-ad-slot", "id", "class", "style"],
+        ADD_ATTR: [
+          "async",
+          "defer",
+          "src",
+          "data-cfasync",
+          "data-zone",
+          "data-ad-slot",
+          "id",
+          "class",
+          "style",
+          "type",
+        ],
       });
       host.innerHTML = cleanHtml;
       host.querySelectorAll("script").forEach((oldScript) => {
@@ -94,20 +98,8 @@ export function AdSlot({
       return;
     }
 
-    if (placement && configured) {
-      const zone = document.createElement("div");
-      zone.dataset.revbidPlacement = placement;
-      zone.dataset.adSlot = id ?? placement;
-      zone.className = "flex h-full min-h-[inherit] w-full items-center justify-center";
-      zone.setAttribute("aria-hidden", "true");
-      host.appendChild(zone);
-      setHasRenderedAd(true);
-      onLoad?.();
-      return;
-    }
-
     setHasRenderedAd(false);
-  }, [inView, consent, adHtml, placement, configured, id, onLoad]);
+  }, [inView, consent, adHtml, id, onLoad]);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -116,7 +108,7 @@ export function AdSlot({
 
     const host = ref.current;
     const hasVisibleAdMarkup = () =>
-      Boolean(host.querySelector("iframe, img, ins, object, embed, [data-revbid-placement]"));
+      Boolean(host.querySelector("iframe, img, ins, object, embed, script"));
 
     const checkVisibility = () => {
       setHasRenderedAd(hasVisibleAdMarkup());

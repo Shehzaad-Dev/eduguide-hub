@@ -65,8 +65,8 @@ function CookiePolicy() {
 
             <h3>3. Advertising & Monetization Cookies</h3>
             <p>
-              EduGuide uses advertising networks like RevBid and Adsterra to support free access to
-              educational content. These cookies enable:
+              EduGuide uses advertising networks like Adsterra and Effective CPM Network to support
+              free access to educational content. These cookies enable:
             </p>
             <ul>
               <li>Personalized ad delivery based on your interests</li>
@@ -76,13 +76,6 @@ function CookiePolicy() {
             </ul>
 
             <h2>Ad Networks & Cookie Usage</h2>
-
-            <h3>RevBid</h3>
-            <p>
-              RevBid is our primary header-bidding partner. They use cookies to auction ad
-              placements and deliver relevant advertisements. Their cookies help ensure you see ads
-              that match your interests while helping us maintain quality content.
-            </p>
 
             <h3>Adsterra</h3>
             <p>

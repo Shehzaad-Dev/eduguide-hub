@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useAdsConsent } from "@/lib/use-ads-consent";
 
 type AdProvider = "adsterra" | "effectivecpm";
 
@@ -172,15 +173,18 @@ async function loadAllSlots() {
 }
 
 export function AdsterraAutoRefreshBanners() {
+  const consent = useAdsConsent();
+
   useEffect(() => {
-    // Immediate first load + strict 40s refresh cycle.
+    if (consent !== "granted") return;
+
     loadAllSlots();
     const intervalId = window.setInterval(loadAllSlots, REFRESH_INTERVAL_MS);
 
     return () => {
       window.clearInterval(intervalId);
     };
-  }, []);
+  }, [consent]);
 
   return (
     <section className="border-b border-border bg-soft/90" aria-label="Top site ads">
