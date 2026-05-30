@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import DOMPurify from "dompurify";
-import { type AdPlacement, getZoneHtml, hasAdProviderConfigured } from "@/lib/ads-config";
+import { type AdPlacement, getZoneId, hasAdProviderConfigured } from "@/lib/ads-config";
 import { useAdsConsent } from "@/lib/use-ads-consent";
 
 type AdSlotProps = {
@@ -8,7 +8,7 @@ type AdSlotProps = {
   className?: string;
   width?: number | string;
   height?: number | string;
-  /** Adsterra zone HTML from env, or override with custom snippet. */
+  /** Monetag zone ID for this placement */
   placement?: AdPlacement;
   adHtml?: string;
   /** Load as soon as consent is granted (for above-the-fold slots). */
@@ -24,7 +24,7 @@ export function AdSlot({
   width = "100%",
   height = 90,
   placement,
-  adHtml: adHtmlOverride,
+  adHtmlOverride,
   eager = false,
   onLoad,
   collapseIfEmpty = false,
@@ -34,8 +34,7 @@ export function AdSlot({
   const [hasRenderedAd, setHasRenderedAd] = useState(false);
   const consent = useAdsConsent();
 
-  const zoneHtml = placement ? getZoneHtml(placement) : undefined;
-  const adHtml = adHtmlOverride ?? zoneHtml;
+  const zoneId = placement ? getZoneId(placement) : undefined;
   const configured = hasAdProviderConfigured();
 
   useEffect(() => {

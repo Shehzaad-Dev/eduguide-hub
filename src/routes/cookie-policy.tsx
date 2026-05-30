@@ -65,8 +65,8 @@ function CookiePolicy() {
 
             <h3>3. Advertising & Monetization Cookies</h3>
             <p>
-              EduGuide uses advertising networks like Adsterra and Effective CPM Network to support
-              free access to educational content. These cookies enable:
+              EduGuide uses advertising networks like Monetag to support free access to educational
+              content. These cookies enable:
             </p>
             <ul>
               <li>Personalized ad delivery based on your interests</li>
@@ -77,17 +77,10 @@ function CookiePolicy() {
 
             <h2>Ad Networks & Cookie Usage</h2>
 
-            <h3>Adsterra</h3>
+            <h3>Monetag</h3>
             <p>
-              Adsterra provides display banner ads across our site with automatic refresh features.
-              Their cookies track impression data, prevent bot activity, and ensure safe
-              monetization practices.
-            </p>
-
-            <h3>Effective CPM Network</h3>
-            <p>
-              We also partner with Effective CPM Network for additional ad inventory. Like all ad
-              networks, they use cookies for ad delivery and performance tracking.
+              Monetag provides display banner ads across our site. Their cookies track impression
+              data, prevent bot activity, and ensure safe monetization practices.
             </p>
 
             <h2>Your Cookie Consent</h2>

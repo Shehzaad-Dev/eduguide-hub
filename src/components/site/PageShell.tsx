@@ -2,13 +2,13 @@ import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import ConsentBanner from "../ui/consent-banner";
 import { PageStepper } from "./PageStepper";
-import { AdsterraAutoRefreshBanners } from "@/components/ads/adsterra-refresh";
+import { MonetgBanners } from "@/components/ads/monetag-banners";
 
 export function PageShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-dvh flex-col bg-background">
       <Navbar />
-      <AdsterraAutoRefreshBanners />
+      <MonetgBanners />
       <main className="flex-1">{children}</main>
       <PageStepper />
       <Footer />
