@@ -1,58 +1,138 @@
-﻿import { useEffect } from "react";
+﻿import { useEffect, useState, useRef } from "react";
 import { useAdsConsent } from "@/lib/use-ads-consent";
 import { monetagConfig } from "@/lib/monetag-sw";
 
-/**
- * Monetag Banner Ads Component
- * Injects Monetag banner scripts for displaying ads across the site
- */
+declare global {
+  interface Window {
+    adHtml?: string;
+  }
+}
+
+function buildMonetagScript(src: string, zone: string): HTMLScriptElement {
+  const script = document.createElement("script");
+  script.defer = true;
+  script.async = false;
+  script.src = src;
+  script.setAttribute("data-zone", zone);
+  script.setAttribute("data-cfasync", "false");
+  return script;
+}
+
+function waitForGlobalAdHtml(maxRetries = 10, intervalMs = 200): Promise<boolean> {
+  return new Promise((resolve) => {
+    let attempts = 0;
+
+    const check = () => {
+      if (typeof window.adHtml !== "undefined") {
+        return resolve(true);
+      }
+      attempts += 1;
+      if (attempts >= maxRetries) {
+        return resolve(false);
+      }
+      window.setTimeout(check, intervalMs);
+    };
+
+    check();
+  });
+}
 
 export function MonetagBanners() {
   const consent = useAdsConsent();
+  const [isReady, setIsReady] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const slotRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (consent !== "granted") return;
-    if (!monetagConfig.enabled) return;
+    if (consent !== "granted") {
+      return;
+    }
 
-    // Safely inject Monetag banner scripts only when zone IDs are present
+    if (typeof window === "undefined") {
+      setFailed(true);
+      return;
+    }
+
+    if (!monetagConfig.enabled) {
+      console.warn("Monetag is disabled. Set VITE_MONETAG_ENABLED=true to enable it.");
+      setFailed(true);
+      return;
+    }
+
     const zone1 = import.meta.env.VITE_MONETAG_ZONE_1;
     const zone2 = import.meta.env.VITE_MONETAG_ZONE_2;
+    if (!zone1 && !zone2) {
+      console.warn("Monetag env vars missing: VITE_MONETAG_ZONE_1 and/or VITE_MONETAG_ZONE_2 must be defined.");
+      setFailed(true);
+      return;
+    }
 
-    if (!zone1 && !zone2) return;
+    const mountNode = slotRef.current;
+    if (!mountNode) {
+      console.warn("Monetag slot container was not mounted.");
+      setFailed(true);
+      return;
+    }
 
     const scripts: HTMLScriptElement[] = [];
 
-    if (zone1) {
-      const s1 = document.createElement("script");
-      s1.async = true;
-      s1.setAttribute("data-zone", zone1);
-      s1.src = `https://nap5k.com/tag.min.js`;
-      document.body.appendChild(s1);
-      scripts.push(s1);
-    }
+    const initialize = async () => {
+      // Ensure the global variable exists before any third-party logic runs.
+      if (typeof window.adHtml === "undefined") {
+        window.adHtml = "";
+      }
 
-    if (zone2) {
-      const s2 = document.createElement("script");
-      s2.async = true;
-      s2.setAttribute("data-zone", zone2);
-      s2.src = `https://quge5.com/88/tag.min.js`;
-      document.body.appendChild(s2);
-      scripts.push(s2);
-    }
+      const hasAdHtml = await waitForGlobalAdHtml();
+      if (!hasAdHtml) {
+        console.warn("Monetag did not detect window.adHtml before loading; continuing with a safe default.");
+      }
+
+      if (zone1) {
+        const script = buildMonetagScript("https://nap5k.com/tag.min.js", zone1);
+        script.onerror = () => {
+          console.warn("Failed to load Monetag script for zone 1.");
+          setFailed(true);
+        };
+        mountNode.appendChild(script);
+        scripts.push(script);
+      }
+
+      if (zone2) {
+        const script = buildMonetagScript("https://quge5.com/88/tag.min.js", zone2);
+        script.onerror = () => {
+          console.warn("Failed to load Monetag script for zone 2.");
+          setFailed(true);
+        };
+        mountNode.appendChild(script);
+        scripts.push(script);
+      }
+
+      setIsReady(true);
+    };
+
+    initialize().catch((error) => {
+      console.warn("Monetag initialization failed:", error);
+      setFailed(true);
+    });
 
     return () => {
-      scripts.forEach((s) => s.parentNode?.removeChild(s));
+      scripts.forEach((script) => script.parentNode?.removeChild(script));
     };
   }, [consent]);
 
+  if (failed) {
+    return null;
+  }
+
+  if (!isReady) {
+    return null;
+  }
+
   return (
     <section className="border-b border-border bg-soft/90" aria-label="Monetag advertisements">
-      <div className="container-px mx-auto max-w-7xl py-4">
-        {/* Monetag banners inject here automatically via the scripts above */}
-      </div>
+      <div ref={slotRef} className="container-px mx-auto max-w-7xl py-4" />
     </section>
   );
 }
 
-// Named export kept for clarity
 export default MonetagBanners;
