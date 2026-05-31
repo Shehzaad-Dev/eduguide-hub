@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Base64 decoding utility for ad scripts
  * Safely decodes Base64 environment variables to HTML
  */

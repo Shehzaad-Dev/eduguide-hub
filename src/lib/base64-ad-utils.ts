@@ -43,7 +43,7 @@ export function isValidBase64(str: string): boolean {
 /**
  * Convert ad HTML snippet to Base64 for environment variables
  * Usage in browser console:
- * 
+ *
  * const htmlScript = `<script>atOptions = {...}</script><script src="..."></script>`;
  * const base64 = convertAdToEnvVar(htmlScript);
  * console.log(base64); // Copy this to Vercel env vars
@@ -66,7 +66,7 @@ export function convertAdToEnvVar(htmlScript: string): {
 /**
  * Verify Base64 environment variable
  * Usage in browser console:
- * 
+ *
  * const envValue = "PHNjcmlwdD4uLi48L3NjcmlwdD4=";
  * const result = verifyEnvBase64(envValue);
  * console.log(result); // Shows decoded HTML and status
@@ -115,13 +115,13 @@ export function verifyEnvBase64(base64EnvValue: string): {
 
 /**
  * Example: How to use in browser console
- * 
+ *
  * ==========================================
  * STEP 1: Encode your ad HTML to Base64
  * ==========================================
- * 
+ *
  * import { convertAdToEnvVar } from '@/lib/base64-ad-utils';
- * 
+ *
  * const myAdHtml = `<script>atOptions = {
  *   'key' : '8a23a3293f12f7d8df1b0ddfd780070d',
  *   'format' : 'iframe',
@@ -129,26 +129,26 @@ export function verifyEnvBase64(base64EnvValue: string): {
  *   'width' : 728,
  *   'params' : {}
  * };</script><script src="https://www.highperformanceformat.com/8a23a3293f12f7d8df1b0ddfd780070d/invoke.js"></script>`;
- * 
+ *
  * const result = convertAdToEnvVar(myAdHtml);
  * console.log('Base64:', result.base64);
  * console.log('Length:', result.length);
  * console.log('Preview:', result.preview);
- * 
+ *
  * // Copy result.base64 to Vercel → Settings → Environment Variables
  * // Create variable: VITE_AD_ZONE_TOP_B64=<result.base64>
- * 
+ *
  * ==========================================
  * STEP 2: Verify the environment variable
  * ==========================================
- * 
+ *
  * import { verifyEnvBase64 } from '@/lib/base64-ad-utils';
- * 
+ *
  * // After deployment, verify it decoded correctly:
  * const envValue = import.meta.env.VITE_AD_ZONE_TOP_B64;
  * const verification = verifyEnvBase64(envValue);
  * console.log(verification);
- * 
+ *
  * // Should show:
  * // {
  * //   isValid: true,

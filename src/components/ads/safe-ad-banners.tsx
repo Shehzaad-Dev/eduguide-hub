@@ -1,11 +1,11 @@
-import { SafeAdSlot } from "@/components/ui/safe-ad-slot";
+﻿import { SafeAdSlot } from "@/components/ui/safe-ad-slot";
 
 /**
  * Example: Safe Ad Banner Component
- * 
+ *
  * This component shows how to safely integrate Base64-encoded ad scripts
  * without causing Vercel crashes or page hijacking issues.
- * 
+ *
  * Replace your old ad banner components with this pattern.
  */
 
@@ -42,9 +42,7 @@ export function SafeAdBanners() {
           </div>
 
           {/* Optional: Additional ad spaces */}
-          <div className="grid gap-4">
-            {/* You can add more SafeAdSlot components here */}
-          </div>
+          <div className="grid gap-4">{/* You can add more SafeAdSlot components here */}</div>
         </div>
 
         {/* Bottom banner - 320x50 mobile or 468x60 */}
@@ -67,16 +65,16 @@ export function SafeAdBanners() {
 
 /**
  * Usage in your Page Shell:
- * 
+ *
  * import { SafeAdBanners } from "@/components/ads/safe-ad-banners";
  * import { Navbar } from "./Navbar";
  * import { Footer } from "./Footer";
- * 
+ *
  * export function PageShell({ children }: { children: React.ReactNode }) {
  *   return (
  *     <div className="flex min-h-dvh flex-col bg-background">
  *       <Navbar />
- *       <SafeAdBanners />           {/* Add this line */}
+ *       <SafeAdBanners />           // Add this line
  *       <main className="flex-1">{children}</main>
  *       <Footer />
  *     </div>
@@ -86,21 +84,21 @@ export function SafeAdBanners() {
 
 /**
  * Individual SafeAdSlot for inline ads:
- * 
+ *
  * // In any page component:
  * import { SafeAdSlot } from "@/components/ui/safe-ad-slot";
- * 
+ *
  * export function BlogPost() {
  *   return (
  *     <article>
  *       <h1>My Blog Post</h1>
  *       <p>Content here...</p>
- *       
- *       {/* Mid-article ad */}
+ *
+ *       // Mid-article ad
  *       <div style={{ maxWidth: "728px", margin: "2rem auto" }}>
  *         <SafeAdSlot placement="top" height={90} />
  *       </div>
- *       
+ *
  *       <p>More content...</p>
  *     </article>
  *   );
@@ -109,7 +107,7 @@ export function SafeAdBanners() {
 
 /**
  * Configuration Reference:
- * 
+ *
  * Properties:
  * - placement: "top" | "mid" | "bottom" - Which ad zone to load
  * - width: number | string - Width (default: "100%")
@@ -119,7 +117,7 @@ export function SafeAdBanners() {
  * - id: string - DOM element ID
  * - className: string - CSS classes
  * - onLoad: () => void - Callback when ad loads
- * 
+ *
  * Environment Variables Required:
  * - VITE_AD_ZONE_TOP_B64 (optional) - Top banner ad (Base64 encoded)
  * - VITE_AD_ZONE_MID_B64 (optional) - Mid section ad (Base64 encoded)

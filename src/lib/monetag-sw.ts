@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Monetag Service Worker Registration
  * This module handles the registration and management of the Monetag service worker
  */

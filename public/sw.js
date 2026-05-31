@@ -1,4 +1,4 @@
-// Monetag Service Worker Configuration
+﻿// Monetag Service Worker Configuration
 // This service worker is required for Monetag ad network integration
 
 self.options = {

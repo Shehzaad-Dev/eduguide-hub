@@ -17,7 +17,7 @@ type SafeAdSlotProps = {
 
 /**
  * SafeAdSlot Component
- * 
+ *
  * Safely renders ad HTML from Base64-encoded environment variables
  * Features:
  * - Client-side only rendering (no SSR/hydration issues)
@@ -107,12 +107,12 @@ export function SafeAdSlot({
         ],
         ALLOWED_STYLES: {
           "*": {
-            "height": [/.*/],
-            "width": [/.*/],
-            "display": [/.*/],
-            "position": [/.*/],
-            "margin": [/.*/],
-            "padding": [/.*/],
+            height: [/.*/],
+            width: [/.*/],
+            display: [/.*/],
+            position: [/.*/],
+            margin: [/.*/],
+            padding: [/.*/],
           },
         },
       });

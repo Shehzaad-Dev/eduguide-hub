@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+﻿import { useEffect } from "react";
 import { useAdsConsent } from "@/lib/use-ads-consent";
 
 /**
