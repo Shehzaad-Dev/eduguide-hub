@@ -1,5 +1,6 @@
 ﻿import { useEffect } from "react";
 import { useAdsConsent } from "@/lib/use-ads-consent";
+import { monetagConfig } from "@/lib/monetag-sw";
 
 /**
  * Monetag Banner Ads Component
@@ -11,28 +12,36 @@ export function MonetagBanners() {
 
   useEffect(() => {
     if (consent !== "granted") return;
+    if (!monetagConfig.enabled) return;
 
-    // Safely inject Monetag banner scripts. Zone IDs are examples; prefer
-    // configuring zones through Vercel environment variables.
-    const zone1 = import.meta.env.VITE_MONETAG_ZONE_1 || "11076796";
-    const zone2 = import.meta.env.VITE_MONETAG_ZONE_2 || "244413";
+    // Safely inject Monetag banner scripts only when zone IDs are present
+    const zone1 = import.meta.env.VITE_MONETAG_ZONE_1;
+    const zone2 = import.meta.env.VITE_MONETAG_ZONE_2;
 
-    const s1 = document.createElement("script");
-    s1.async = true;
-    s1.setAttribute("data-zone", zone1);
-    s1.src = `https://nap5k.com/tag.min.js`;
+    if (!zone1 && !zone2) return;
 
-    const s2 = document.createElement("script");
-    s2.async = true;
-    s2.setAttribute("data-zone", zone2);
-    s2.src = `https://quge5.com/88/tag.min.js`;
+    const scripts: HTMLScriptElement[] = [];
 
-    document.body.appendChild(s1);
-    document.body.appendChild(s2);
+    if (zone1) {
+      const s1 = document.createElement("script");
+      s1.async = true;
+      s1.setAttribute("data-zone", zone1);
+      s1.src = `https://nap5k.com/tag.min.js`;
+      document.body.appendChild(s1);
+      scripts.push(s1);
+    }
+
+    if (zone2) {
+      const s2 = document.createElement("script");
+      s2.async = true;
+      s2.setAttribute("data-zone", zone2);
+      s2.src = `https://quge5.com/88/tag.min.js`;
+      document.body.appendChild(s2);
+      scripts.push(s2);
+    }
 
     return () => {
-      if (s1.parentNode) s1.parentNode.removeChild(s1);
-      if (s2.parentNode) s2.parentNode.removeChild(s2);
+      scripts.forEach((s) => s.parentNode?.removeChild(s));
     };
   }, [consent]);
 

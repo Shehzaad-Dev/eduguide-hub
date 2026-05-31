@@ -6,6 +6,9 @@
 export function registerMonetag() {
   // Only register service worker in production or when explicitly enabled
   if (typeof window === "undefined") return; // Skip SSR
+  // Only register when the Monetag integration is enabled via env
+  const enabled = import.meta.env.VITE_MONETAG_ENABLED === "true";
+  if (!enabled) return;
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
